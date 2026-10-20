@@ -1,0 +1,22 @@
+# Credentials and private runtime state
+.env
+.env.*
+!.env.example
+auth.json
+*.pem
+*.key
+*.p12
+*.pfx
+config.yaml
+state.db*
+sessions/
+logs/
+
+# Local build environment
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+Thumbs.db

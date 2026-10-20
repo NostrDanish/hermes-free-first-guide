@@ -1,0 +1,12 @@
+HERMES: FREE FIRST, PAID ONLY BY CHOICE
+
+A practical 8-card guide: install Hermes, connect free models, add free-only backups, use optional local models, and keep cron/subagents from silently spending.
+
+Start: https://hermes-agent.nousresearch.com/
+Free models: https://openrouter.ai/models?pricing=free
+
+Scripts when possible → local when useful → capable free cloud → paid only with permission or a bounded preapproved exception.
+
+Free does not mean unlimited. Cloud prompts leave your machine. Hosted Jev and external tools may cost money.
+
+Send images 01–08 in order as one Telegram album. Send as files to preserve sharp text. The PDF has clickable links; the Markdown guide has copyable commands. Independent guide; source checks: 20 October 2026.

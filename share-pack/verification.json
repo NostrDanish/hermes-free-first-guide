@@ -1,0 +1,59 @@
+{
+  "pages": 8,
+  "image_dimensions": [
+    1080,
+    1350
+  ],
+  "pdf_link_annotations": 10,
+  "layout_text_runs": 159,
+  "files": [
+    {
+      "name": "01-the-strategy.png",
+      "bytes": 92464
+    },
+    {
+      "name": "02-install-hermes.png",
+      "bytes": 94009
+    },
+    {
+      "name": "03-connect-free-model.png",
+      "bytes": 111827
+    },
+    {
+      "name": "04-free-only-backups.png",
+      "bytes": 121356
+    },
+    {
+      "name": "05-optional-local-models.png",
+      "bytes": 120298
+    },
+    {
+      "name": "06-background-costs.png",
+      "bytes": 127466
+    },
+    {
+      "name": "07-paid-only-by-permission.png",
+      "bytes": 116843
+    },
+    {
+      "name": "08-verify-and-share.png",
+      "bytes": 122358
+    },
+    {
+      "name": "FREE-FIRST-VISUAL-GUIDE.pdf",
+      "bytes": 914199
+    },
+    {
+      "name": "FULL-SETUP-GUIDE.md",
+      "bytes": 34115
+    },
+    {
+      "name": "README.txt",
+      "bytes": 472
+    },
+    {
+      "name": "TELEGRAM-CAPTION.txt",
+      "bytes": 762
+    }
+  ]
+}
