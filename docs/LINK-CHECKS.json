@@ -1,0 +1,446 @@
+{
+  "checked_at": "2026-10-20T07:31:08.578230+02:00",
+  "unique_links": 74,
+  "results": [
+    {
+      "url": "https://ai.google.dev/gemini-api/docs/pricing",
+      "status": 200,
+      "resolved_url": "https://ai.google.dev/gemini-api/docs/pricing",
+      "content_missing": false
+    },
+    {
+      "url": "https://aistudio.google.com/apikey",
+      "status": 200,
+      "resolved_url": "https://accounts.google.com/v3/signin/identifier?continue=https://aistudio.google.com/apikey&followup=https://aistudio.google.com/apikey&passive=1209600&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S1628316436:1792474264281829",
+      "content_missing": false
+    },
+    {
+      "url": "https://build.nvidia.com/explore/discover",
+      "status": 200,
+      "resolved_url": "https://build.nvidia.com/explore/discover",
+      "content_missing": false
+    },
+    {
+      "url": "https://cheaperinference.com/",
+      "status": 200,
+      "resolved_url": "https://www.cheaperinference.com/",
+      "content_missing": false
+    },
+    {
+      "url": "https://cloud.cerebras.ai/",
+      "status": 200,
+      "resolved_url": "https://cloud.cerebras.ai/",
+      "content_missing": false
+    },
+    {
+      "url": "https://console.groq.com/docs/rate-limits",
+      "status": 200,
+      "resolved_url": "https://console.groq.com/docs/rate-limits",
+      "content_missing": false
+    },
+    {
+      "url": "https://console.groq.com/keys",
+      "status": 200,
+      "resolved_url": "https://console.groq.com/keys",
+      "content_missing": false
+    },
+    {
+      "url": "https://console.groq.com/settings/limits",
+      "status": 200,
+      "resolved_url": "https://console.groq.com/settings/limits",
+      "content_missing": false
+    },
+    {
+      "url": "https://console.mistral.ai/",
+      "status": 307,
+      "follow_up": "web_extract retrieved the live Mistral login/signup page; initial checker encountered a 307 redirect."
+    },
+    {
+      "url": "https://dash.cloudflare.com/",
+      "status": 403,
+      "follow_up": "web_extract retrieved the live Cloudflare sign-in page; raw checker was bot-blocked with 403."
+    },
+    {
+      "url": "https://dashboard.cohere.com/api-keys",
+      "status": 200,
+      "resolved_url": "https://dashboard.cohere.com/welcome/login?redirect_uri=%2Fapi-keys",
+      "content_missing": false
+    },
+    {
+      "url": "https://developers.cloudflare.com/workers-ai/platform/pricing/",
+      "status": 200,
+      "resolved_url": "https://developers.cloudflare.com/workers-ai/platform/pricing/",
+      "content_missing": false
+    },
+    {
+      "url": "https://docs.api.nvidia.com/nim/docs/api-quickstart",
+      "status": 200,
+      "resolved_url": "https://docs.api.nvidia.com/nim/docs/api-quickstart",
+      "content_missing": false
+    },
+    {
+      "url": "https://docs.api.nvidia.com/nim/docs/faq",
+      "status": 200,
+      "resolved_url": "https://docs.api.nvidia.com/nim/docs/faq",
+      "content_missing": false
+    },
+    {
+      "url": "https://docs.cohere.com/docs/rate-limits",
+      "status": 200,
+      "resolved_url": "https://docs.cohere.com/docs/rate-limits",
+      "content_missing": false
+    },
+    {
+      "url": "https://docs.mistral.ai/admin/billing-usage/usage-limits",
+      "status": 200,
+      "resolved_url": "https://docs.mistral.ai/admin/billing-usage/usage-limits",
+      "content_missing": false
+    },
+    {
+      "url": "https://docs.mistral.ai/getting-started/quickstarts/studio/activate-and-generate-api-key",
+      "status": 200,
+      "resolved_url": "https://docs.mistral.ai/getting-started/quickstarts/studio/activate-and-generate-api-key",
+      "content_missing": false
+    },
+    {
+      "url": "https://docs.typesafe.ai/",
+      "status": 200,
+      "resolved_url": "https://docs.typesafe.ai/introduction",
+      "content_missing": false
+    },
+    {
+      "url": "https://enter.pollinations.ai/keys",
+      "status": 200,
+      "resolved_url": "https://enter.pollinations.ai/keys",
+      "content_missing": false
+    },
+    {
+      "url": "https://enter.pollinations.ai/quests",
+      "status": 200,
+      "resolved_url": "https://enter.pollinations.ai/quests",
+      "content_missing": false
+    },
+    {
+      "url": "https://gen.pollinations.ai/docs",
+      "status": 200,
+      "resolved_url": "https://gen.pollinations.ai/docs",
+      "content_missing": false
+    },
+    {
+      "url": "https://github.com/NousResearch/hermes-agent",
+      "status": 200,
+      "resolved_url": "https://github.com/NousResearch/hermes-agent",
+      "content_missing": false
+    },
+    {
+      "url": "https://github.com/codaaiteam/jev-mcp",
+      "status": 200,
+      "resolved_url": "https://github.com/codaaiteam/jev-mcp",
+      "content_missing": false
+    },
+    {
+      "url": "https://github.com/tashfeenahmed/freellmapi",
+      "status": 200,
+      "resolved_url": "https://github.com/tashfeenahmed/freellmapi",
+      "content_missing": false
+    },
+    {
+      "url": "https://github.com/tashfeenahmed/freellmapi/blob/main/docs/en/api/01-rest-api.md",
+      "status": 200,
+      "resolved_url": "https://github.com/tashfeenahmed/freellmapi/blob/main/docs/en/api/01-rest-api.md",
+      "content_missing": false
+    },
+    {
+      "url": "https://github.com/tashfeenahmed/freellmapi/blob/main/docs/en/clients/01-agent-clients.md",
+      "status": 200,
+      "resolved_url": "https://github.com/tashfeenahmed/freellmapi/blob/main/docs/en/clients/01-agent-clients.md",
+      "content_missing": false
+    },
+    {
+      "url": "https://github.com/tashfeenahmed/freellmapi/blob/main/docs/en/install/01-install.md",
+      "status": 200,
+      "resolved_url": "https://github.com/tashfeenahmed/freellmapi/blob/main/docs/en/install/01-install.md",
+      "content_missing": false
+    },
+    {
+      "url": "https://github.com/tashfeenahmed/freellmapi/releases/latest",
+      "status": 200,
+      "resolved_url": "https://github.com/tashfeenahmed/freellmapi/releases/tag/v0.16.5",
+      "content_missing": false
+    },
+    {
+      "url": "https://hermes-agent.nousresearch.com/",
+      "status": 200,
+      "resolved_url": "https://hermes-agent.nousresearch.com/",
+      "content_missing": false
+    },
+    {
+      "url": "https://hermes-agent.nousresearch.com/docs/getting-started/installation",
+      "status": 200,
+      "resolved_url": "https://hermes-agent.nousresearch.com/docs/getting-started/installation",
+      "content_missing": false
+    },
+    {
+      "url": "https://hermes-agent.nousresearch.com/docs/guides/local-ollama-setup",
+      "status": 200,
+      "resolved_url": "https://hermes-agent.nousresearch.com/docs/guides/local-ollama-setup",
+      "content_missing": false
+    },
+    {
+      "url": "https://hermes-agent.nousresearch.com/docs/integrations/nous-portal",
+      "status": 200,
+      "resolved_url": "https://hermes-agent.nousresearch.com/docs/integrations/nous-portal",
+      "content_missing": false
+    },
+    {
+      "url": "https://hermes-agent.nousresearch.com/docs/llms.txt",
+      "status": 200,
+      "resolved_url": "https://hermes-agent.nousresearch.com/docs/llms.txt",
+      "content_missing": false
+    },
+    {
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/cli",
+      "status": 200,
+      "resolved_url": "https://hermes-agent.nousresearch.com/docs/user-guide/cli",
+      "content_missing": false
+    },
+    {
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/configuration",
+      "status": 200,
+      "resolved_url": "https://hermes-agent.nousresearch.com/docs/user-guide/configuration",
+      "content_missing": false
+    },
+    {
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/configuring-models",
+      "status": 200,
+      "resolved_url": "https://hermes-agent.nousresearch.com/docs/user-guide/configuring-models",
+      "content_missing": false
+    },
+    {
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/browser",
+      "status": 200,
+      "resolved_url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/browser",
+      "content_missing": false
+    },
+    {
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/context-files",
+      "status": 200,
+      "resolved_url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/context-files",
+      "content_missing": false
+    },
+    {
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/cron",
+      "status": 200,
+      "resolved_url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/cron",
+      "content_missing": false
+    },
+    {
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/delegation",
+      "status": 200,
+      "resolved_url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/delegation",
+      "content_missing": false
+    },
+    {
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/fallback-providers",
+      "status": 200,
+      "resolved_url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/fallback-providers",
+      "content_missing": false
+    },
+    {
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/memory",
+      "status": 200,
+      "resolved_url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/memory",
+      "content_missing": false
+    },
+    {
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/skills",
+      "status": 200,
+      "resolved_url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/skills",
+      "content_missing": false
+    },
+    {
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/tools",
+      "status": 200,
+      "resolved_url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/tools",
+      "content_missing": false
+    },
+    {
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/web-search",
+      "status": 200,
+      "resolved_url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/web-search",
+      "content_missing": false
+    },
+    {
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/local-models",
+      "status": 200,
+      "resolved_url": "https://hermes-agent.nousresearch.com/docs/user-guide/local-models",
+      "content_missing": false
+    },
+    {
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/messaging",
+      "status": 200,
+      "resolved_url": "https://hermes-agent.nousresearch.com/docs/user-guide/messaging",
+      "content_missing": false
+    },
+    {
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/messaging/telegram",
+      "status": 200,
+      "resolved_url": "https://hermes-agent.nousresearch.com/docs/user-guide/messaging/telegram",
+      "content_missing": false
+    },
+    {
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/profiles",
+      "status": 200,
+      "resolved_url": "https://hermes-agent.nousresearch.com/docs/user-guide/profiles",
+      "content_missing": false
+    },
+    {
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/secrets",
+      "status": 200,
+      "resolved_url": "https://hermes-agent.nousresearch.com/docs/user-guide/secrets",
+      "content_missing": false
+    },
+    {
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/security",
+      "status": 200,
+      "resolved_url": "https://hermes-agent.nousresearch.com/docs/user-guide/security",
+      "content_missing": false
+    },
+    {
+      "url": "https://huggingface.co/docs/inference-providers/pricing",
+      "status": 200,
+      "resolved_url": "https://huggingface.co/docs/inference-providers/pricing",
+      "content_missing": false
+    },
+    {
+      "url": "https://inference-api.nousresearch.com/v1/models",
+      "status": 200,
+      "resolved_url": "https://inference-api.nousresearch.com/v1/models",
+      "content_missing": false
+    },
+    {
+      "url": "https://inference-docs.cerebras.ai/support/rate-limits",
+      "status": 200,
+      "resolved_url": "https://inference-docs.cerebras.ai/support/rate-limits",
+      "content_missing": false
+    },
+    {
+      "url": "https://jevtypesafeai.com/integrations/mcp",
+      "status": 200,
+      "resolved_url": "https://jevtypesafeai.com/integrations/mcp",
+      "content_missing": false
+    },
+    {
+      "url": "https://jevtypesafeai.com/pricing",
+      "status": 200,
+      "resolved_url": "https://jevtypesafeai.com/pricing",
+      "content_missing": false
+    },
+    {
+      "url": "https://nano-gpt.com/api",
+      "status": 200,
+      "resolved_url": "https://nano-gpt.com/api",
+      "content_missing": false
+    },
+    {
+      "url": "https://nano-gpt.com/pricing",
+      "status": 200,
+      "resolved_url": "https://nano-gpt.com/pricing",
+      "content_missing": false
+    },
+    {
+      "url": "https://ollama.com/download",
+      "status": 200,
+      "resolved_url": "https://ollama.com/download",
+      "content_missing": false
+    },
+    {
+      "url": "https://ollama.com/library",
+      "status": 200,
+      "resolved_url": "https://ollama.com/library",
+      "content_missing": false
+    },
+    {
+      "url": "https://openrouter.ai/",
+      "status": 200,
+      "resolved_url": "https://openrouter.ai/",
+      "content_missing": false
+    },
+    {
+      "url": "https://openrouter.ai/activity",
+      "status": 200,
+      "resolved_url": "https://openrouter.ai/sign-in?redirect_url=https%3A%2F%2Fopenrouter.ai%2Factivity",
+      "content_missing": false
+    },
+    {
+      "url": "https://openrouter.ai/api/v1/models",
+      "status": 200,
+      "resolved_url": "https://openrouter.ai/api/v1/models",
+      "content_missing": false
+    },
+    {
+      "url": "https://openrouter.ai/docs/api/reference/limits",
+      "status": 200,
+      "resolved_url": "https://openrouter.ai/docs/api_reference/limits",
+      "content_missing": false
+    },
+    {
+      "url": "https://openrouter.ai/docs/guides/routing/model-variants/free",
+      "status": 200,
+      "resolved_url": "https://openrouter.ai/docs/guides/routing/model-variants/free",
+      "content_missing": false
+    },
+    {
+      "url": "https://openrouter.ai/docs/guides/routing/routers/free-router",
+      "status": 200,
+      "resolved_url": "https://openrouter.ai/docs/guides/routing/routers/free-router",
+      "content_missing": false
+    },
+    {
+      "url": "https://openrouter.ai/models?pricing=free",
+      "status": 200,
+      "resolved_url": "https://openrouter.ai/models?pricing=free",
+      "content_missing": false
+    },
+    {
+      "url": "https://openrouter.ai/nvidia/nemotron-3-ultra-550b-a55b:free",
+      "status": 200,
+      "resolved_url": "https://openrouter.ai/nvidia/nemotron-3-ultra-550b-a55b:free",
+      "content_missing": false
+    },
+    {
+      "url": "https://openrouter.ai/settings/keys",
+      "status": 200,
+      "resolved_url": "https://openrouter.ai/sign-in?redirect_url=https%3A%2F%2Fopenrouter.ai%2Fworkspace-redirect%2Fkeys",
+      "content_missing": false
+    },
+    {
+      "url": "https://pollinations.ai/",
+      "status": 200,
+      "resolved_url": "https://pollinations.ai/",
+      "content_missing": false
+    },
+    {
+      "url": "https://portal.nousresearch.com/",
+      "status": 200,
+      "resolved_url": "https://portal.nousresearch.com/",
+      "content_missing": false
+    },
+    {
+      "url": "https://portal.nousresearch.com/api-docs",
+      "status": 429,
+      "follow_up": "Live page content was successfully retrieved earlier in this run with web_extract. Later bulk URL check returned 429; no repeated hammering or account access was attempted."
+    },
+    {
+      "url": "https://portal.nousresearch.com/manage-subscription",
+      "status": 429,
+      "follow_up": "Live page content was successfully retrieved earlier in this run with web_extract. Later bulk URL check returned 429; no repeated hammering or account access was attempted."
+    },
+    {
+      "url": "https://typesafe.ai/",
+      "status": 200,
+      "resolved_url": "https://typesafe.ai/",
+      "content_missing": false
+    }
+  ]
+}

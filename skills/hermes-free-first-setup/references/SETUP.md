@@ -1,6 +1,6 @@
 # Free-first setup: humans and AI agents
 
-This package has two parts: a standard-library Python configuration script and a portable AI skill that handles discovery, installation guidance, credential handoff, optional local inference, and verification. It is not a hidden paid router or an unattended account-signup system.
+This package has two parts: a standard-library Python script for verified Nous/OpenRouter free presets, and a portable AI skill covering full Hermes setup, Nous, OpenRouter, FreeLLMAPI and additional eligible upstreams, credential handoff, optional local inference, and verification. Read `references/PROVIDERS.md` for the account/API chapters and current free-versus-paid distinctions. It is not a hidden paid router or an unattended account-signup system.
 
 ## Quick start from the repository
 
@@ -9,26 +9,26 @@ Requires Python 3.10+ and Hermes on PATH. Install Hermes through its official in
 First preview the intended profile explicitly:
 
 ```bash
-python3 scripts/setup_free_first.py --home "$HOME/.hermes"
+python3 scripts/setup_free_first.py --home "$HOME/.hermes" --provider nous
 ```
 
 After reviewing the plan, stop relevant active automation/configuration editors and apply:
 
 ```bash
-python3 scripts/setup_free_first.py --home "$HOME/.hermes" --apply --yes
+python3 scripts/setup_free_first.py --home "$HOME/.hermes" --provider nous --apply --yes
 ```
 
 The script defaults to dry-run. `--yes` is deliberately insufficient without `--apply`, and apply refuses without `--yes`. On Windows, use the available Python launcher and an explicit native Hermes data path; `$HOME` shell examples above are POSIX examples, not PowerShell instructions.
 
-Use the actual target data directory, not the repository directory. Named profiles and remote backends have their own data homes; discover them rather than assuming the examples fit. When `HERMES_HOME` is set it is the default, otherwise the script defaults to `~/.hermes`. Explicit `--home` is recommended.
+Choose `--provider nous` for Portal Free or `--provider openrouter` for OpenRouter. Do not run a public-catalog preset over an existing gateway you want to retain; follow the reviewed custom-endpoint workflow instead. Use the actual target data directory, not the repository directory. Named profiles and remote backends have their own data homes; discover them rather than assuming the examples fit. When `HERMES_HOME` is set it is the default, otherwise the script defaults to `~/.hermes`. Explicit `--home` is recommended.
 
 Choose a specific model only by its exact current catalog ID:
 
 ```bash
-python3 scripts/setup_free_first.py --home "$HOME/.hermes" --model openrouter/free
+python3 scripts/setup_free_first.py --home "$HOME/.hermes" --provider openrouter --model openrouter/free
 ```
 
-The script verifies all listed price components are finite zero, checks advertised tool support, requires the free router to be available, and uses an image-capable free route for vision. If the preferred Nemotron free model is absent, it chooses the free router. A requested unavailable or priced model is rejected rather than normalized or silently substituted.
+The script checks the selected provider’s public catalog for explicit finite-zero pricing and tool support, chooses only verified same-provider free backups, and pins vision to an image-capable free route. OpenRouter’s preset requires its free router; Nous uses its own free model IDs and endpoint. It prefers the current preset’s known starter (Laguna on Nous, Nemotron on OpenRouter) and rejects an unverified fallback. A requested unavailable or priced model is rejected rather than normalized or silently substituted.
 
 ## What changes
 

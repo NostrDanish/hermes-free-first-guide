@@ -7,6 +7,9 @@ from reportlab.lib.utils import ImageReader
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'share-pack'
 OUT.mkdir(parents=True, exist_ok=True)
+# Replace only this generator's numbered image cards.
+for stale in OUT.glob('[0-9][0-9]-*.png'):
+    stale.unlink()
 W,H=1080,1350
 BG='#F4F3EA'; INK='#142D2B'; MUTED='#506762'; GREEN='#C6EE9A'; PANEL='#E5EBDD'; LINE='#CCD7C8'; ORANGE='#F2AE78'; WHITE='#FFFFFF'
 REG='/usr/share/fonts/liberation/LiberationSans-Regular.ttf'
@@ -95,99 +98,90 @@ def save(slug,y):
     p=OUT/f'{page:02d}-{slug}.png'; im.save(p,optimize=True)
     allpages.append((p,list(links)))
 
-# 01: Overview, visual route ladder.
-y=begin(1,'THE STRATEGY','FREE FIRST.\nPAID BY CHOICE.','Run useful AI without making every task a paid API call.')
-steps=[('01','SCRIPT','A normal tool can solve it? Skip the LLM.'),('02','LOCAL','Private data or a small job? Use your hardware.'),('03','FREE CLOUD','Use a capable, verified zero-price model.'),('04','PAID: ASK FIRST','Only by choice, or a bounded preapproved exception.')]
-for num,label,body in steps:
-    fill=ORANGE if num=='04' else GREEN if num=='03' else PANEL
-    draw.rounded_rectangle((60,y,1020,y+139),radius=22,fill=fill)
-    txt(num,87,y+27,38,bold=True,width=80)
-    txt(label,176,y+23,32,bold=True,width=810)
-    txt(body,176,y+70,29,width=805,leading=36)
-    y+=157
-# Keep the takeaway compact; this is a sequence, not mandatory extra hops.
-y=txt('Free cloud can be your daily default. Local is optional, not a mandatory extra hop.',60,y+3,31,width=955,color=MUTED,leading=39)
+# 01: Full-stack overview.
+y=begin(1,'THE FULL STACK','HERMES.\nFREE API FIRST.','Nous + OpenRouter + FreeLLMAPI. Local when useful. Paid only by choice.')
+for label,body,fill in [
+    ('HERMES IS THE AGENT','It uses approved tools, models, skills and scheduled jobs.',PANEL),
+    ('NOUS + OPENROUTER','Start with an eligible, explicitly free model route.',GREEN),
+    ('FREELLMAPI IS THE ROUTER','Combine only the upstream allowances you actually have.',PANEL),
+    ('FREE ≠ EVERY SERVICE','Trials, earned credits and paid subscriptions are different.',ORANGE)]:
+    y=box(label,body,y,fill=fill,body_size=31)
 save('the-strategy',y)
 
-# 02: Real install route, readable link instead of a tiny long shell URL.
-y=begin(2,'SETUP / 1','INSTALL\nHERMES','Start with the official app. Free cloud does not need a powerful GPU.')
-y=box('1 / DOWNLOAD','Open the official website and follow the installation steps for your operating system.',y)
+# 02: Hermes installation and basic controls.
+y=begin(2,'START / HERMES','INSTALL THE\nAGENT FIRST.','A free cloud API does not require a powerful GPU.')
+y=box('1 / USE THE OFFICIAL INSTALLER','Choose the correct desktop or CLI package for your operating system.',y,body_size=32)
 y=link('hermes-agent.nousresearch.com','https://hermes-agent.nousresearch.com/',y)
-y=box('2 / SET UP','Run the setup wizard, then check that Hermes starts correctly.',y)
-y=code('hermes setup\nhermes doctor',y,30)
-y=txt('Already installed? Back up your active configuration first. Apply changes to the intended profile only.',60,y,32,color=MUTED,width=945,leading=40)
-y=link('Official installation instructions →','https://hermes-agent.nousresearch.com/docs/getting-started/installation',y+25)
+y=code('hermes setup\nhermes model\nhermes doctor',y,30)
+y=bullet('TEST A REAL TOOL CALL','In an empty folder, ask it to list files without modifying anything.',y)
+y=txt('Keep command approvals on. Review tool backends: free chat does not make search, images or cloud browsers free.',60,y,31,width=950,color=MUTED,leading=39)
 save('install-hermes',y)
 
-# 03: Connection and exact selectable model ID.
-y=begin(3,'SETUP / 2','CONNECT A\nFREE MODEL','Use your own OpenRouter account and API key.')
-y=bullet('CREATE YOUR KEY','Open openrouter.ai/settings/keys. Enter the key in Hermes provider setup — never in a chat.',y)
-y=code('hermes model',y,31)
-y=txt('Choose OpenRouter, then select a currently free, tool-capable model.',60,y,34,width=940,leading=43)
-y=box('STARTER MODEL / CATALOG-CHECKED','nvidia/nemotron-3-ultra-550b-a55b:free',y+27,fill=GREEN,body_size=31)
-y=box('EASY ALTERNATIVE','openrouter/free selects from eligible free models. It is NOT the same as openrouter/auto.',y,body_size=32)
-y=link('openrouter.ai/models?pricing=free','https://openrouter.ai/models?pricing=free',y)
-y=txt('Start a new chat after setting your default. Free availability can change.',60,y,29,width=950,color=MUTED,leading=37)
-save('connect-free-model',y)
+# 03: Nous is a first-class free route, not an OpenRouter footnote.
+y=begin(3,'PROVIDER / NOUS','NOUS PORTAL\nHAS A FREE PLAN.','Free models only. $0 monthly credits is not a budget for paid models.')
+y=bullet('CREATE / SIGN INTO YOUR ACCOUNT','Choose the Free plan, then use Hermes model setup → Nous Portal.',y)
+y=box('CHECKED STARTER MODEL','poolside/laguna-s-2.1:free',y,fill=GREEN,body_size=32)
+y=box('API BASE URL','https://inference-api.nousresearch.com/v1',y,body_size=30)
+y=txt('Use exact free IDs from the current catalog. Hosted tools have separate entitlements. Never assume every Portal model or tool is free.',60,y,31,width=950,color=MUTED,leading=39)
+y=link('portal.nousresearch.com','https://portal.nousresearch.com/',y+22)
+y=link('Free plan and current paid options →','https://portal.nousresearch.com/manage-subscription',y)
+save('nous-portal-free',y)
 
-# 04: Main reliability / billing distinction.
-y=begin(4,'SETUP / 3','FREE-ONLY\nBACKUPS','A free primary with a paid fallback can still generate a bill.')
-y=code('hermes fallback\nhermes fallback list',y,31)
-y=box('ADD ONLY VERIFIED FREE / LOCAL ROUTES','For example: poolside/laguna-s-2.1:free or openrouter/free through OpenRouter.',y,fill=GREEN,body_size=32)
-y=bullet('SERVICE FAILURE ≠ WRONG ANSWER','Fallback reacts to API errors. It does not determine whether an answer is correct.',y)
-y=bullet('QUOTA EXHAUSTED?','Wait, use local, or ask. Another model can share the same daily account limit.',y)
-y=txt('Never put a paid model at the end “just in case.” Check upstream proxies and old fallback_model settings too.',60,y,32,width=948,color=MUTED,leading=40)
-y=link('Fallback setup and behavior →','https://hermes-agent.nousresearch.com/docs/user-guide/features/fallback-providers',y+25)
-save('free-only-backups',y)
+# 04: Independent OpenRouter signup and current free model selection.
+y=begin(4,'PROVIDER / OPENROUTER','ADD ANOTHER\nFREE API ROUTE.','Create your own key. Enter it only in trusted local provider settings.')
+y=link('openrouter.ai/settings/keys','https://openrouter.ai/settings/keys',y)
+y=box('SELECT A VERIFIED FREE MODEL','nvidia/nemotron-3-ultra-550b-a55b:free',y,fill=GREEN,body_size=31)
+y=box('OR USE THE FREE ROUTER','openrouter/free selects eligible free models. Do not confuse it with openrouter/auto.',y,body_size=32)
+y=bullet('KEEP EVERY FALLBACK FREE / LOCAL','A free main model plus a paid backup can still generate a bill.',y)
+y=txt('Free quotas are shared across your account. When exhausted: wait, use local, or ask — do not evade limits.',60,y,31,width=945,color=MUTED,leading=39)
+y=link('Browse current free models →','https://openrouter.ai/models?pricing=free',y+20)
+save('openrouter-free',y)
 
-# 05: Optional local route.
-y=begin(5,'OPTIONAL / LOCAL','KEEP PRIVATE\nWORK LOCAL','No hosted inference bill. Your hardware, electricity and memory still matter.')
-y=box('DESKTOP PATH','Settings → Providers → Local Models. Click Install runtime.',y,fill=GREEN,body_size=32)
-y=bullet('DOWNLOAD A MODEL THAT FITS','Choose tool support and realistic memory fit, not just the biggest model name.',y)
-y=bullet('CLICK USE + TEST A REAL TOOL CALL','A fluent chat reply does not prove the model can execute tools.',y)
-y=box('ALREADY HAVE OLLAMA?','Reuse it. The usual endpoint is http://127.0.0.1:11434/v1 — verify your actual port.',y,body_size=31)
-y=txt('Local-only means local auxiliary calls and no cloud fallback. Keep unauthenticated servers off the internet.',60,y,30,width=950,color=MUTED,leading=38)
-y=link('Official Local Models guide →','https://hermes-agent.nousresearch.com/docs/user-guide/local-models',y+20)
-save('optional-local-models',y)
+# 05: Gateway, upstream keys and actual entitlement.
+y=begin(5,'ROUTER / FREELLMAPI','ONE LOCAL API.\nYOUR OWN ALLOWANCES.','The self-hosted router does not manufacture free provider credits.')
+y=bullet('INSTALL THE RIGHT PROJECT','Use tashfeenahmed/freellmapi. Choose its supported desktop or Docker/server path.',y)
+y=bullet('ADD LEGITIMATE UPSTREAM KEYS','Use its local Keys UI. Enable and test eligible free models only.',y)
+y=box('CONNECT HERMES AS A CUSTOM ENDPOINT','Usual server URL: http://127.0.0.1:3001/v1. Use the unified gateway key — not the admin token.',y,fill=GREEN,body_size=31)
+y=txt('Audit the gateway chain AND Hermes fallbacks. auto is only as free as its enabled routes. The optional live catalog subscription is paid.',60,y,30,width=945,color=MUTED,leading=38)
+y=link('Correct source and installation guide →','https://github.com/tashfeenahmed/freellmapi',y+22)
+save('freellmapi-gateway',y)
 
-# 06: Hidden sources of spend.
-y=begin(6,'COST CONTROL','CHECK THE\nHIDDEN CALLS','Your main chat model is only one place that can spend money.')
-y=bullet('CRON + SUBAGENTS','Pin free/local models independently. Audit existing jobs and worker overrides.',y)
-y=bullet('AUXILIARY MODELS','Check compression, titles, vision and approvals. “Auto” may follow a paid chat model.',y)
-y=bullet('PLUGINS + TOOL APIs','Search, images, speech, cloud browsers and memory services can bill separately.',y)
-y=box('CHEAPEST AUTOMATION','Use a script-only no-agent job for deterministic checks. Do not wake an LLM just to compare files.',y,fill=GREEN,body_size=32)
-y=link('Inspect models and auxiliary settings →','https://hermes-agent.nousresearch.com/docs/user-guide/configuring-models',y)
-y=txt('Free quotas are finite. One agent task can consume many API requests.',60,y,31,width=945,color=MUTED,leading=39)
-save('background-costs',y)
+# 06: Honest access categories instead of calling every installed route free.
+y=begin(6,'MORE PROVIDERS','KNOW WHAT\n“FREE” MEANS.','Installed, connected and free are three different claims.')
+y=box('ELIGIBLE FREE ALLOWANCES','Groq, Gemini, Mistral and Cloudflare: check your exact plan, model, limits and data terms.',y,fill=GREEN,body_size=31)
+y=box('EARNED CREDITS / TRIALS','Pollinations Quest Pollen is finite. NVIDIA, Cerebras and Cohere have trial/evaluation terms.',y,body_size=31)
+y=box('DO NOT LABEL THESE FREE APIs','NanoGPT: web-free is not API-free. Cheaper Inference: paid. HF hosted free accounts: no included credits.',y,fill=ORANGE,body_size=31)
+y=txt('The full handbook includes signup links, API setup, entitlement checks and the installed-provider inventory.',60,y,31,width=945,color=MUTED,leading=39)
+save('other-provider-allowances',y)
 
-# 07: The actual tactic / permission.
-y=begin(7,'PAID / LAST RESORT','NO SILENT\nPAID UPGRADE.','Recommended mode: ask before spending. Free-route failure is not permission.')
-y=box('COPY THIS RULE','Use tools, local, then free models. Paid models require my explicit permission. Keep automatic fallbacks free/local. Verify results.',y,fill=GREEN,body_size=32)
-y=bullet('IF YOU AUTHORIZE A PAID STEP','Name the model, scope and budget. Enforce the cap with the provider or a budget-aware dispatcher.',y)
-y=bullet('JEV IS OPTIONAL','It can advise retry / stop / escalate. Hosted API use may cost money.',y)
-y=box('CONFIDENCE IS NOT CONSENT','A gate threshold of 0.90 is a policy choice, not spending permission or proof of accuracy. No reliable gate? Ask.',y,fill=ORANGE,body_size=32)
-save('paid-only-by-permission',y)
+# 07: Local privacy and hidden billing surfaces.
+y=begin(7,'CONTROL / SPENDING','LOCAL WHEN USEFUL.\nNO SILENT SPEND.','Private work needs local inference, local auxiliaries and no cloud fallback.')
+y=bullet('OPTIONAL LOCAL MODELS','Hermes Settings → Providers → Local Models. Download only a model that fits your hardware.',y)
+y=bullet('PIN BACKGROUND WORK','Audit cron pins, workers, subagents, compression, titles, vision and external tools.',y)
+y=box('PAID REQUIRES PERMISSION','Only an explicit choice or a bounded, preauthorized exception. Enforce budgets outside the prompt.',y,fill=GREEN,body_size=32)
+y=txt('Jev is optional. A confidence score is not spending permission, and a hosted decision API can itself cost money.',60,y,31,width=945,color=MUTED,leading=39)
+save('local-and-cost-controls',y)
 
-# 08: Practical smoke test and useful links.
-y=begin(8,'VERIFY + SHARE','TEST IT.\nTHEN SHARE IT.','Do not trust a model simply claiming that it is free or local.')
-y=box('ASK IN AN EMPTY TEST DIRECTORY','Use a terminal or file tool to list this directory. Report the actual tool result. Do not modify files.',y,fill=GREEN,body_size=32)
-y=bullet('CHECK THE ACTUAL ROUTE','Look at Hermes provider/model metadata and openrouter.ai/activity. Review any charges.',y)
-y=txt('USEFUL LINKS / CLICK IN THE PDF',60,y,29,bold=True); y+=54
-y=link('Hermes documentation','https://hermes-agent.nousresearch.com/docs/',y)
-y=link('Free models + current pricing','https://openrouter.ai/models?pricing=free',y)
-y=link('OpenRouter limits and quotas','https://openrouter.ai/docs/api/reference/limits',y)
-y=link('Check provider activity','https://openrouter.ai/activity',y)
-y=txt('Share images 01–08 as one album, or forward the PDF. Never share API keys or private logs.',60,y+8,30,width=945,bold=True,leading=38)
-y+=2
-y=txt('Free cloud sends data to third parties. Availability and quotas change. Full commands are in the companion text guide.',60,y,29,width=940,color=MUTED,leading=37)
+# 08: Links and safe handoff.
+y=begin(8,'VERIFY / SHARE','TEST THE ROUTE.\nSHARE THE GUIDE.','A model claiming it is free is not evidence. Check actual routing and activity.')
+y=box('START WITH A HARMLESS TEST','Ask for a real read-only tool call. Inspect the served model, provider, quota and cost before automation.',y,fill=GREEN,body_size=31)
+y=link('Hermes docs and setup','https://hermes-agent.nousresearch.com/docs/',y)
+y=link('Nous Portal Free plan','https://portal.nousresearch.com/manage-subscription',y)
+y=link('OpenRouter free model catalog','https://openrouter.ai/models?pricing=free',y)
+y=link('FreeLLMAPI project and install','https://github.com/tashfeenahmed/freellmapi',y)
+y=box('FULL HANDBOOK + AI SETUP KIT','The share pack includes the complete linked PDF, copyable Markdown, image cards and sharing caption.',y,body_size=31)
+y=txt('Never share keys, auth.json or private logs. Free cloud sends data to third parties; quotas and terms can change.',60,y,30,width=945,color=MUTED,leading=38)
 save('verify-and-share',y)
 
 # Small, selectable copy/paste companion: original verified guide, unchanged.
 source=ROOT / 'docs' / 'SETUP.md'
 shutil.copyfile(source,OUT/'FULL-SETUP-GUIDE.md')
-caption='''HERMES: FREE FIRST, PAID ONLY BY CHOICE\n\nA practical 8-card guide: install Hermes, connect free models, add free-only backups, use optional local models, and keep cron/subagents from silently spending.\n\nStart: https://hermes-agent.nousresearch.com/\nFree models: https://openrouter.ai/models?pricing=free\n\nScripts when possible → local when useful → capable free cloud → paid only with permission or a bounded preapproved exception.\n\nFree does not mean unlimited. Cloud prompts leave your machine. Hosted Jev and external tools may cost money.\n\nSend images 01–08 in order as one Telegram album. Send as files to preserve sharp text. The PDF has clickable links; the Markdown guide has copyable commands. Independent guide; source checks: 20 October 2026.\n'''
+shutil.copyfile(ROOT/'downloads/HERMES-FULL-FREE-API-HANDBOOK.pdf',OUT/'HERMES-FULL-FREE-API-HANDBOOK.pdf')
+for archive in ['hermes-free-first-setup-kit.zip', 'hermes-free-first-setup-skill.zip']:
+    shutil.copyfile(ROOT/'downloads'/archive, OUT/archive)
+caption='''HERMES: THE COMPLETE FREE-API SETUP\n\nNous Portal Free + OpenRouter free models + FreeLLMAPI + optional local inference. The full handbook explains account signup, keys, endpoints, free-only routing, background jobs and verification.\n\nNot every installed provider is free: Pollinations can use earned Pollen, NanoGPT API allowances are paid-plan usage, and Cheaper Inference is paid. Trials and quotas have limits.\n\nStart: https://hermes-agent.nousresearch.com/\nNous: https://portal.nousresearch.com/\nOpenRouter: https://openrouter.ai/models?pricing=free\nFreeLLMAPI: https://github.com/tashfeenahmed/freellmapi\n\nForward the complete handbook PDF, or send images 01–08 in order. Send images as files for sharper text. Never forward keys or private configuration. Independent guide; source check: 20 October 2026.\n'''
 (OUT/'TELEGRAM-CAPTION.txt').write_text(caption)
-(OUT/'README.txt').write_text('''FREE-FIRST SHARE PACK\n\n01–08 PNG: portrait 1080 x 1350 image guide. Send in numeric order as one album.\nFREE-FIRST-VISUAL-GUIDE.pdf: the same 8 cards, with clickable resource links.\nFULL-SETUP-GUIDE.md: complete setup instructions and copyable commands.\nTELEGRAM-CAPTION.txt: ready-to-paste sharing caption.\n\nThis is an illustrated guide, not screenshots of the application. Model/catalog facts come from the checked companion guide. Availability and quotas may change.\n''')
+(OUT/'README.txt').write_text('''FREE-FIRST SHARE PACK\n\n01–08 PNG: portrait 1080 x 1350 image guide. Send in numeric order as one album.\nFREE-FIRST-VISUAL-GUIDE.pdf: the same 8 cards, with clickable resource links.\nHERMES-FULL-FREE-API-HANDBOOK.pdf: complete Hermes/provider setup with selectable text and links.\nFULL-SETUP-GUIDE.md: complete setup instructions and copyable commands.\nhermes-free-first-setup-kit.zip: setup helper, portable AI skill, instructions and tests.\nhermes-free-first-setup-skill.zip: standalone portable skill folder.\nTELEGRAM-CAPTION.txt: ready-to-paste sharing caption.\n\nThis is an illustrated guide, not screenshots of the application. Model/catalog facts come from the checked companion guide. Availability and quotas may change.\n''')
 
 pdf=OUT/'FREE-FIRST-VISUAL-GUIDE.pdf'
 c=canvas.Canvas(str(pdf),pagesize=(540,675),pageCompression=1)
@@ -213,7 +207,7 @@ for p,_ in allpages:
 assert pdf.read_bytes().startswith(b'%PDF-')
 assert len(re.findall(rb'/Type\s*/Page\b',pdf.read_bytes()))==8
 # ReportLab leaves annotation URL strings directly inspectable.
-assert b'openrouter.ai/activity' in pdf.read_bytes()
+assert b'portal.nousresearch.com/manage-subscription' in pdf.read_bytes()
 manifest={'pages':8,'image_dimensions':[1080,1350],'pdf_link_annotations':sum(len(ls) for _,ls in allpages),'layout_text_runs':len(bounds),'files':[{'name':p.name,'bytes':p.stat().st_size} for p in sorted(OUT.iterdir()) if p.is_file() and p.name != 'verification.json']}
 (OUT/'verification.json').write_text(json.dumps(manifest,indent=2))
 zip_path=ROOT/'downloads'/'HERMES-FREE-FIRST-SHARE-PACK.zip'

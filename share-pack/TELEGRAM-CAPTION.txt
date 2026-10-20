@@ -1,12 +1,12 @@
-HERMES: FREE FIRST, PAID ONLY BY CHOICE
+HERMES: THE COMPLETE FREE-API SETUP
 
-A practical 8-card guide: install Hermes, connect free models, add free-only backups, use optional local models, and keep cron/subagents from silently spending.
+Nous Portal Free + OpenRouter free models + FreeLLMAPI + optional local inference. The full handbook explains account signup, keys, endpoints, free-only routing, background jobs and verification.
+
+Not every installed provider is free: Pollinations can use earned Pollen, NanoGPT API allowances are paid-plan usage, and Cheaper Inference is paid. Trials and quotas have limits.
 
 Start: https://hermes-agent.nousresearch.com/
-Free models: https://openrouter.ai/models?pricing=free
+Nous: https://portal.nousresearch.com/
+OpenRouter: https://openrouter.ai/models?pricing=free
+FreeLLMAPI: https://github.com/tashfeenahmed/freellmapi
 
-Scripts when possible → local when useful → capable free cloud → paid only with permission or a bounded preapproved exception.
-
-Free does not mean unlimited. Cloud prompts leave your machine. Hosted Jev and external tools may cost money.
-
-Send images 01–08 in order as one Telegram album. Send as files to preserve sharp text. The PDF has clickable links; the Markdown guide has copyable commands. Independent guide; source checks: 20 October 2026.
+Forward the complete handbook PDF, or send images 01–08 in order. Send images as files for sharper text. Never forward keys or private configuration. Independent guide; source check: 20 October 2026.

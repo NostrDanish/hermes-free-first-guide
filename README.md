@@ -1,12 +1,14 @@
-# Hermes Free-First Guide
+# Hermes: Complete Free-API Handbook
 
-**Scripts when possible. Local when useful. Free cloud for capable agent work. Paid only with permission or a bounded, preauthorized exception.**
+**Full Hermes setup + Nous Portal Free + OpenRouter + FreeLLMAPI + eligible additional allowances + optional local inference. Paid only with permission or a bounded, preauthorized exception.**
 
 Private working repository for the complete setup guide and its shareable visual edition. No credentials, live Hermes configuration, model weights, or account/session data are included. This repository does not install or enforce a model router by itself.
 
 ## Read or download
 
-- [Full setup guide — copyable commands and source links](docs/SETUP.md)
+- **[Complete handbook PDF — full Hermes and free-API setup](downloads/HERMES-FULL-FREE-API-HANDBOOK.pdf)**
+- [Complete Markdown handbook — exact commands and source links](docs/SETUP.md)
+- [Installed-provider inventory and honest access classifications](docs/PROVIDER-STATUS.md)
 - [Eight-page visual PDF — clickable resource links](share-pack/FREE-FIRST-VISUAL-GUIDE.pdf)
 - [Complete Telegram/share ZIP](downloads/HERMES-FREE-FIRST-SHARE-PACK.zip)
 - [Numbered image cards](share-pack/)
@@ -25,13 +27,13 @@ Private working repository for the complete setup guide and its shareable visual
 
 ```bash
 # Preview the intended profile; does not change it.
-python3 scripts/setup_free_first.py --home "$HOME/.hermes"
+python3 scripts/setup_free_first.py --home "$HOME/.hermes" --provider nous
 
 # Only after reviewing and approving the listed changes:
-python3 scripts/setup_free_first.py --home "$HOME/.hermes" --apply --yes
+python3 scripts/setup_free_first.py --home "$HOME/.hermes" --provider nous --apply --yes
 ```
 
-The helper verifies live free catalog pricing and tool support, backs up existing settings, pins free main/delegation/cron/auxiliary routes, clears automatic paid fallbacks, and verifies saved values. It attempts config rollback on a catchable failure. It does not read/store API keys, install Hermes/models, modify existing job pins, or implement automatic paid escalation. Review its exact replacement scope before applying.
+Choose `--provider nous` or `--provider openrouter` explicitly. FreeLLMAPI/custom endpoints use the separate reviewed workflow in the skill/provider chapters; the helper does not label an arbitrary `auto` chain free. The helper verifies live free catalog pricing and tool support, backs up existing settings, pins free main/delegation/cron/auxiliary routes, clears automatic paid fallbacks, and verifies saved values. It attempts config rollback on a catchable failure. It does not read/store API keys, install Hermes/models, modify existing job pins, or implement automatic paid escalation. Review its exact replacement scope before applying.
 
 **Give this to an AI:**
 
@@ -44,19 +46,19 @@ Optional real-CLI integration (disposable homes + public catalog, no model infer
 
 ## Share on Telegram or elsewhere
 
-Forward the PDF for the simplest single-file guide. For an image album, download/extract the ZIP and select PNGs **01–08** in numeric order. Sending them as files preserves sharper text. The ZIP also contains the full Markdown guide and caption.
+Forward the **complete handbook PDF** for the full single-file guide. The visual PDF and eight image cards are a quick-start overview, not a substitute for the full provider chapters. For an image album, download/extract the ZIP and select PNGs **01–08** in numeric order. Sending them as files preserves sharper text. The ZIP also contains the complete handbook PDF/Markdown, both AI setup archives, and the caption.
 
 While this repository is private, its GitHub links require access. Forward downloaded artifacts to share them without granting repository access. No public Pages site or public release is configured.
 
 ## What is covered
 
-1. The free-first strategy and spending modes.
-2. Hermes installation and OpenRouter setup.
-3. Selecting currently free, tool-capable models.
-4. Free-only fallbacks and optional local inference.
-5. Cron, subagents, auxiliary slots, and other billing surfaces.
-6. Explicit paid authorization and optional Jev decision gates.
-7. Verification, privacy, troubleshooting, and official references.
+1. Hermes installation, tools, approvals, skills, memory, profiles, Telegram, and verification.
+2. **Nous Portal Free:** signup/login, exact free models, API endpoint and entitlement caveats.
+3. **OpenRouter:** keys, free catalogs, limits, and free-only fallback routing.
+4. **FreeLLMAPI:** the correct project, desktop/server install, upstream keys, unified key, and chain auditing.
+5. Pollinations earned-credit API use; why configured NanoGPT/Cheaper Inference are not automatically free.
+6. Groq, Gemini, Mistral, Cerebras, NVIDIA, Cloudflare, Cohere and Hugging Face access classifications and setup links.
+7. Using those APIs from scripts/other applications, local inference, background work, paid permission, and troubleshooting.
 
 The visual cards are illustrated instructions, not screenshots of the application.
 
@@ -68,10 +70,12 @@ Use Python 3.10+ in an isolated virtual environment:
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
+python scripts/build_handbook.py
+python scripts/package_setup.py
 python scripts/build_visuals.py
 ```
 
-The generator reads `docs/SETUP.md`, rewrites the eight PNGs/PDF and companion files in `share-pack/`, and regenerates the ZIP under `downloads/`. It does not change your Hermes configuration or make model/API calls. Edit the card copy/layout in the script; the full written guide is the source for the companion text, not an automatic slide-layout input.
+The handbook builder combines `docs/HERMES-BASICS.md`, `docs/PROVIDER-CHAPTERS.md` and `docs/GUIDE-CORE.md` into the generated `docs/SETUP.md` and full linked PDF; edit those source chapters rather than the generated master. The visual generator reads the generated handbook, rewrites the eight PNGs/PDF and companion files in `share-pack/`, and regenerates the ZIP under `downloads/`. It does not change your Hermes configuration or make model/API calls. Edit the card copy/layout in the script; the full written guide is the source for the companion text, not an automatic slide-layout input.
 
 The current renderer uses these Linux fonts:
 

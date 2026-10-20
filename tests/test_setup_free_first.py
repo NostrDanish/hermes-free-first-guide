@@ -240,5 +240,23 @@ class SetupTests(unittest.TestCase):
                                  {router['id']: router}, router['id'])
 
 
+    def test_nous_preset_uses_nous_catalog_models_and_endpoint(self):
+        setup = self.load()
+        primary = model('poolside/laguna-s-2.1:free')
+        backup = model('poolside/laguna-xs-2.1:free')
+        vision = model('stepfun/step-3.7-flash:free', image=True)
+        allowed = {item['id']: item for item in [primary, backup, vision]}
+        state = {'auxiliary': {'compression': {'provider': 'auto'}, 'vision': {'provider': 'auto'}}}
+        settings = setup.build_settings(state, allowed, primary['id'], provider='nous')
+        self.assertEqual(settings['model']['provider'], 'nous')
+        self.assertEqual(settings['model']['base_url'], 'https://inference-api.nousresearch.com/v1')
+        self.assertEqual(settings['fallback_providers'], [{'provider': 'nous', 'model': backup['id']}])
+        self.assertEqual(settings['auxiliary']['vision']['model'], vision['id'])
+        self.assertEqual(settings['auxiliary']['vision']['provider'], 'nous')
+        self.assertEqual(settings['cron.model_provider'], 'nous')
+        self.assertEqual(settings['delegation']['provider'], 'nous')
+        self.assertEqual(settings['model']['aliases']['free'], 'nous/' + primary['id'])
+
+
 if __name__ == '__main__':
     unittest.main()

@@ -12,6 +12,16 @@ from urllib.request import Request, urlopen
 import uuid
 
 
+PROVIDERS = {
+    'openrouter': {'base_url': 'https://openrouter.ai/api/v1',
+                   'preferred': 'nvidia/nemotron-3-ultra-550b-a55b:free',
+                   'backup': 'openrouter/free', 'vision': 'openrouter/free'},
+    'nous': {'base_url': 'https://inference-api.nousresearch.com/v1',
+             'preferred': 'poolside/laguna-s-2.1:free',
+             'backup': 'poolside/laguna-xs-2.1:free', 'vision': 'stepfun/step-3.7-flash:free'},
+}
+
+
 def free_models(catalog):
     """Accept only explicit finite zero pricing plus advertised tool support."""
     if not isinstance(catalog, dict) or not isinstance(catalog.get('data'), list):
@@ -36,28 +46,35 @@ def free_models(catalog):
     return result
 
 
-def build_settings(snapshot, allowed, primary):
+def build_settings(snapshot, allowed, primary, provider='openrouter'):
     """Reset automatic routing while preserving unrelated top-level settings."""
     if primary not in allowed:
         raise ValueError('Requested model is absent, priced, or lacks tool support.')
-    if 'openrouter/free' not in allowed:
+    preset = PROVIDERS[provider]
+    if provider == 'openrouter' and 'openrouter/free' not in allowed:
         raise ValueError('The free router is unavailable; refusing an unverified fallback.')
-    vision = primary if 'image' in allowed[primary].get('architecture', {}).get('input_modalities', []) else 'openrouter/free'
-    if 'image' not in allowed[vision].get('architecture', {}).get('input_modalities', []):
+    vision_candidates = [primary, preset['vision'], *sorted(allowed)]
+    vision = next((identifier for identifier in vision_candidates if identifier in allowed
+                   and 'image' in (allowed[identifier].get('architecture') or {}).get('input_modalities', [])), None)
+    if vision is None:
         raise ValueError('No verified free image route is available.')
+    backup = preset['backup'] if preset['backup'] in allowed else next(iter(sorted(allowed)), primary)
+    fallbacks = [] if primary == backup else [{'provider': provider, 'model': backup}]
     old_model = snapshot.get('model') or {}
     aliases = (old_model.get('aliases') or {}) if isinstance(old_model, dict) else {}
     if not isinstance(aliases, dict) or any(not isinstance(value, str) for value in aliases.values()):
         raise ValueError('Complex model aliases need manual review; refusing to rewrite masked credentials.')
     aliases = dict(aliases)
-    aliases.update(free='openrouter/' + primary, freerouter='openrouter/openrouter/free')
+    aliases['free'] = provider + '/' + primary
+    if provider == 'openrouter':
+        aliases['freerouter'] = 'openrouter/openrouter/free'
     aux = {'free_only': True, 'openrouter_model': primary}
     slots = snapshot.get('auxiliary') or {}
     if not isinstance(slots, dict):
         raise ValueError('Unrecognized auxiliary configuration.')
     for name, slot in slots.items():
         if isinstance(slot, dict) and ('provider' in slot or 'model' in slot):
-            route = {'provider': 'openrouter', 'model': vision if name == 'vision' else primary,
+            route = {'provider': provider, 'model': vision if name == 'vision' else primary,
                      'base_url': '', 'api_key': '', 'extra_body': {}, 'fallback_chain': []}
             if isinstance(slot.get('enabled'), bool):
                 route['enabled'] = slot['enabled']
@@ -65,15 +82,15 @@ def build_settings(snapshot, allowed, primary):
     if not any(isinstance(value, dict) for value in aux.values()):
         raise ValueError('No auxiliary slots discovered; update Hermes before applying.')
     return {
-        'model': {'provider': 'openrouter', 'default': primary,
-                  'base_url': 'https://openrouter.ai/api/v1', 'api_key': '',
+        'model': {'provider': provider, 'default': primary,
+                  'base_url': preset['base_url'], 'api_key': '',
                   'api_mode': 'chat_completions', 'aliases': aliases},
-        'fallback_providers': [] if primary == 'openrouter/free' else [{'provider': 'openrouter', 'model': 'openrouter/free'}],
+        'fallback_providers': fallbacks,
         'fallback_model': None,
-        'delegation': {'provider': 'openrouter', 'model': primary, 'base_url': '', 'api_key': '',
+        'delegation': {'provider': provider, 'model': primary, 'base_url': '', 'api_key': '',
                        'fallback_providers': [], 'max_concurrent_children': 2,
                        'subagent_auto_approve': False},
-        'cron.model_provider': 'openrouter', 'cron.model': primary, 'cron.provider': '',
+        'cron.model_provider': provider, 'cron.model': primary, 'cron.provider': '',
         'auxiliary': aux,
     }
 
@@ -108,8 +125,8 @@ def read_settings(home, executable='hermes'):
             for key in sections}
 
 
-def fetch_catalog():
-    request = Request('https://openrouter.ai/api/v1/models',
+def fetch_catalog(provider='openrouter'):
+    request = Request(PROVIDERS[provider]['base_url'] + '/models',
                       headers={'User-Agent': 'hermes-free-first-setup/0.1'})
     with urlopen(request, timeout=30) as response:
         # shortcut: public catalogs over 16 MiB are rejected; raise only after review.
@@ -190,6 +207,8 @@ def main(argv=None):
     parser.add_argument('--home', required=False,
                         default=os.environ.get('HERMES_HOME', str(Path.home() / '.hermes')),
                         help='Explicit target Hermes data/profile directory; review this before applying.')
+    parser.add_argument('--provider', choices=sorted(PROVIDERS), default='openrouter',
+                        help='Verified public-catalog preset; does not authenticate the account.')
     parser.add_argument('--model', help='Exact catalog model ID; must pass the live free/tool checks.')
     parser.add_argument('--apply', action='store_true', help='Apply the plan; without this flag nothing is written.')
     parser.add_argument('--yes', action='store_true', help='Confirm replacement of the listed routing settings.')
@@ -216,15 +235,16 @@ def main(argv=None):
             check_cli(probe)
             snapshot = read_settings(probe)
         if (snapshot.get('provider_routing') or snapshot.get('request_overrides')
-                or (snapshot.get('providers') or {}).get('openrouter')):
-            raise ValueError('Custom OpenRouter/request routing exists. Review it manually before using this preset.')
-        allowed = free_models(fetch_catalog())
-        preferred = 'nvidia/nemotron-3-ultra-550b-a55b:free'
-        primary = args.model or (preferred if preferred in allowed else 'openrouter/free')
-        settings = build_settings(snapshot, allowed, primary)
+                or (snapshot.get('providers') or {}).get(args.provider)):
+            raise ValueError('Custom provider/request routing exists. Review it manually before using this preset.')
+        allowed = free_models(fetch_catalog(args.provider))
+        preset = PROVIDERS[args.provider]
+        preferred = preset['preferred']
+        primary = args.model or (preferred if preferred in allowed else preset['backup'])
+        settings = build_settings(snapshot, allowed, primary, provider=args.provider)
         report = {
             'mode': 'apply' if args.apply else 'dry-run', 'home': str(home),
-            'main': {'provider': 'openrouter', 'model': primary},
+            'main': {'provider': args.provider, 'model': primary},
             'vision_model': settings['auxiliary']['vision']['model'] if 'vision' in settings['auxiliary'] else None,
             'managed_sections': list(settings),
             'auxiliary_slots': sorted(key for key, value in settings['auxiliary'].items() if isinstance(value, dict)),
@@ -233,10 +253,10 @@ def main(argv=None):
                 'Reset delegation routing and cap concurrent children at two.',
                 'Set cron fleet defaults; existing per-job pins remain untouched.',
                 'Reset discovered auxiliary routing/endpoints; preserve explicit enabled flags.',
-                'Keep unrelated top-level settings and existing model alias names; update free/freerouter aliases.',
+                'Keep unrelated top-level settings and existing alias names; update free and the preset-specific shortcut.',
             ],
             'remaining_manual_checks': [
-                'Add OpenRouter credentials only through a trusted local provider/key UI or supported secret source.',
+                'Authenticate the selected provider only through its trusted local login/key UI or supported secret source.',
                 'Audit pinned cron jobs, worker overrides, other profiles, MCP sampling, plugins and external tool charges.',
                 'Select/install local models through Hermes Local Models if desired; none are downloaded here.',
                 'No paid auto-escalation is installed. Jev is optional and its hosted API may cost money.',

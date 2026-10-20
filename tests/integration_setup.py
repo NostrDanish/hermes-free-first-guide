@@ -62,6 +62,24 @@ def main():
         assert (home / 'config.yaml').read_bytes() == original
         assert not (home / '.free-first-setup.lock').exists()
         checks.append('real-CLI partial-write failure restores original config and releases lock')
+        nous_home = Path(directory) / 'nous-profile'
+        nous_command = [sys.executable, str(ROOT / 'scripts/setup_free_first.py'),
+                        '--home', str(nous_home), '--provider', 'nous', '--apply', '--yes']
+        result = subprocess.run(nous_command, text=True, capture_output=True, timeout=180)
+        assert result.returncode == 0, result.stderr
+        nous_report = json.loads(result.stdout)
+        assert nous_report['main']['provider'] == 'nous'
+        nous_state = setup.read_settings(nous_home)
+        assert nous_state['model']['base_url'] == 'https://inference-api.nousresearch.com/v1'
+        assert nous_state['cron']['model_provider'] == 'nous'
+        assert all(value['provider'] == 'nous' for value in nous_state['auxiliary'].values()
+                   if isinstance(value, dict) and 'provider' in value)
+        checks.append('Nous preset uses verified Nous model IDs, endpoint and all auxiliary routes')
+        previous = (nous_home / 'config.yaml').read_bytes()
+        result = subprocess.run(nous_command, text=True, capture_output=True, timeout=180)
+        assert result.returncode == 0, result.stderr
+        assert (nous_home / 'config.yaml').read_bytes() == previous
+        checks.append('Nous preset reapplication is byte-idempotent')
     print(json.dumps({'checks_passed': len(checks), 'checks': checks,
                       'auxiliary_slots_configured': len(first['auxiliary_slots']),
                       'authenticated_inference': 'not run', 'real_credentials': 'not used'}, indent=2))
