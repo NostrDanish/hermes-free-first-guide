@@ -21,7 +21,7 @@ def compose():
     numbering = {1: 1, 2: 2, 3: 4, 4: 9, 5: 10, 6: 11, 7: 12, 8: 13, 9: 14, 10: 15, 11: 16, 12: 17}
     for old, new in numbering.items():
         combined[new] = re.sub(r'^## \d+\.', f'## {new}.', core[old], count=1)
-    assert sorted(combined) == list(range(18))
+    assert sorted(combined) == list(range(22))
     titles = [combined[n].splitlines()[0][3:] for n in sorted(combined)]
     front = '''# Hermes: The Complete Free-API Handbook
 

@@ -346,3 +346,42 @@ This makes a real generation request and consumes quota/credits on the chosen en
 For CLI/desktop apps, use their supported provider settings or documented integration. A compatible API does not imply every client supports every transport, vision format, tool schema, reasoning parameter, or authentication flow. FreeLLMAPI's client documentation is at <https://github.com/tashfeenahmed/freellmapi/blob/main/docs/en/clients/01-agent-clients.md>.
 
 Do not publish a shared server-side key in a frontend or Telegram channel. For applications with multiple users, provide individual authorization/budgets and comply with the upstream terms. A personal proxy and someone else's free account are not a public redistribution license.
+
+## 18. NanoGPT (paid-last, crypto, no KYC)
+
+Paid tier, but payable in crypto and without KYC — the acceptable last resort.
+
+1. Open the referral for 5% off eligible usage: <https://nano-gpt.com/r/AhJbKMxg> (redeem code `AhJbKMxg`). No referral discount on provider-selection pricing or markup (Caching mode, pinned provider).
+2. Create an API key in the NanoGPT dashboard and store it in your secret manager (`NANOGPT_API_KEY`), never in chat.
+3. Add it to Hermes as a custom OpenAI-compatible provider; verify the current `base_url` and model IDs from the NanoGPT docs before wiring.
+4. Only enable after the free routes are exhausted, and state the spend cap out loud first.
+
+## 19. PPQ (paid-last, invite-only, privacy-first)
+
+Invite-based access to strong paid models without email/phone signup.
+
+1. Accept the invite: <https://ppq.ai/invite/949880ca>
+2. Fund the account (check current payment methods and KYC terms on ppq.ai — terms change).
+3. Create an API key, store it as `PPQ_API_KEY` in your secret manager.
+4. Wire as a custom OpenAI-compatible provider in Hermes using PPQ's current `base_url`; confirm model IDs from their docs.
+5. Treat as paid-last, same rule as NanoGPT.
+
+## 20. CheaperInference (discounted paid aggregator)
+
+One OpenAI-compatible API with discounted frontier models; fund from $5, usage-based, no monthly commitment. Use it instead of paying full price when a paid model is genuinely needed.
+
+1. Sign up with the ref link: <https://cheaperinference.com/?ref=XfdSBRMrj8> (or <https://platform.cheaperinference.com/signup?ref=XfdSBRMrj8>)
+2. API base: `https://api.cheaperinference.com/v1` — store the key as `CHEAPERINFERENCE_API_KEY` in your secret manager.
+3. Compare live discounts on the catalog before choosing a model (examples at time of writing: deepseek-v4.1-flash 55% off, claude-opus-5.5 35% off, glm-5.3-flash 42% off). Check <https://platform.cheaperinference.com/docs>.
+4. Wire as a custom provider in Hermes; still paid — permission and spend cap first.
+
+## 21. Kimi (cheap paid + referral credits)
+
+Kimi (Moonshot AI) is a cheap strong-model route, and the referral program gives both sides membership-credit draws (3/7/15/30-day or 1-year).
+
+1. Use the invite: <https://www.kimi.ai/activities/en/invite/share?scenario=subscribe&from=share_poster&invitation_code=MJE8ZY> (code `MJE8ZY`). Bind and subscribe, then enter the draw on the campaign page.
+2. Get an API key (Moonshot platform), store it as `KIMI_API_KEY` in your secret manager.
+3. Wire as a custom OpenAI-compatible provider (Moonshot endpoint) in Hermes, or via OpenRouter if the Kimi models are listed there.
+4. Paid-last applies; referral credits reduce cost but are not a free tier.
+
+**Referral links above benefit the guide author. They never change the setup steps — free routes stay the default; chapters 18-21 are only for explicit, capped paid use.**
