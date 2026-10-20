@@ -16,6 +16,32 @@ Private working repository for the complete setup guide and its shareable visual
 
 ![Free-first model strategy](share-pack/01-the-strategy.png)
 
+## AI-assisted setup / automation
+
+- [Setup script](scripts/setup_free_first.py) — standard-library Python; dry-run first.
+- [Portable AI skill](skills/hermes-free-first-setup/SKILL.md) — discovery, safe apply, credential handoff, optional local inference, and verification.
+- [Setup instructions and rollback](skills/hermes-free-first-setup/references/SETUP.md).
+- [Download the setup kit](downloads/hermes-free-first-setup-kit.zip) or [skill-only ZIP](downloads/hermes-free-first-setup-skill.zip).
+
+```bash
+# Preview the intended profile; does not change it.
+python3 scripts/setup_free_first.py --home "$HOME/.hermes"
+
+# Only after reviewing and approving the listed changes:
+python3 scripts/setup_free_first.py --home "$HOME/.hermes" --apply --yes
+```
+
+The helper verifies live free catalog pricing and tool support, backs up existing settings, pins free main/delegation/cron/auxiliary routes, clears automatic paid fallbacks, and verifies saved values. It attempts config rollback on a catchable failure. It does not read/store API keys, install Hermes/models, modify existing job pins, or implement automatic paid escalation. Review its exact replacement scope before applying.
+
+**Give this to an AI:**
+
+> Read `skills/hermes-free-first-setup/SKILL.md` and use its bundled script to set up free-first Hermes for me. Discover my intended profile, preview first, ask before applying, keep keys out of chat, audit background billing, and verify an actual tool call. No automatic paid escalation.
+
+To install the skill, inspect and copy its entire folder into the intended client's skill directory without overwriting an existing skill. It can also be read directly from this repository. See the setup instructions for a guarded copy example and Windows caveats.
+
+Offline tests: `python3 -m unittest discover -s tests -v`.
+Optional real-CLI integration (disposable homes + public catalog, no model inference): `python3 tests/integration_setup.py`.
+
 ## Share on Telegram or elsewhere
 
 Forward the PDF for the simplest single-file guide. For an image album, download/extract the ZIP and select PNGs **01–08** in numeric order. Sending them as files preserves sharper text. The ZIP also contains the full Markdown guide and caption.
