@@ -586,10 +586,11 @@ Its files are refreshed on a cron schedule, so read them as a **dated snapshot**
 | Nous Plus | <https://portal.nousresearch.com/r/0xprivacy> | $15 off the first month of the $20 Plus seat | API keys still spend credits |
 | treg.to | <https://treg.to/?ref=danishcrypto-v742d> | $1 free to start | tool catalog, not a model API |
 | Cerebras | <https://www.cerebras.ai/referral-program> (your code is generated in your console) | 200,000 bonus tokens/day for both sides | program terms restrict publishing the code, so none is printed here |
+| Novita | <https://novita.ai/?ref=mte5yzfe&utm_source=affiliate> (owner code `mte5yzfe`) | 10% commission on referrals' eligible usage for up to 180 days (read 31 October 2026, <https://novita.ai/affiliate-new>) | owner-supplied URL published verbatim, including `utm_source`; paid API, not a free-first route |
 
 **OpenRouter's `?ref=pricing-table-free`-style URLs are not referral codes.** They are OpenRouter's own campaign-attribution parameters for its pricing page, and no external publisher can substitute a code into them. This guide uses the plain OpenRouter links.
 
-**Novita runs an affiliate program, and this guide does not yet carry a code for it.** Novita's own page states a 10% commission with a 180-day cookie. The program page is <https://novita.ai/affiliate-new>; the referral URL is issued inside the account, so no `?ref=` value is printed here. Novita is a paid API provider: the reviewed pricing pages showed no confirmed zero-priced model, so it is not presented as a free route.
+**Novita is a paid API provider, and its pricing page carries one zero-priced row.** Read 31 October 2026 from <https://novita.ai/pricing>: Apodex 1.1 Mini is listed with free input and free output, while the two models the homepage announces at `$0/0` are priced there — Macaron V1 Venti at $0.825 input / $2.475 output and Ling 3.0 Flash at $0.06 / $0.18, all per Mt — so the homepage banner numbers are not authoritative. Treat that free row as a dated catalog observation, not a guarantee of capacity, eligibility, tool support, or continued free access; no Novita key slot, API base path, or registration helper is wired into this guide, so it is not presented as a free route. Novita issues referral codes inside the account, so the link in the table above is the account owner's own code, not one reconstructed by this guide.
 
 ### The fill-in table
 

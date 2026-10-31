@@ -1,6 +1,6 @@
 {
   "checked_at": "2026-10-31T15:00:00+01:00",
-  "unique_links": 130,
+  "unique_links": 132,
   "results": [
     {
       "url": "https://hermes-agent.nousresearch.com/docs/user-guide/cli",
@@ -317,7 +317,7 @@
     {
       "url": "https://aistudio.google.com/apikey",
       "status": 200,
-      "resolved_url": "https://accounts.google.com/v3/signin/identifier?continue=https://aistudio.google.com/apikey&followup=https://aistudio.google.com/apikey&passive=1209600&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S1948242961:1793460785447501",
+      "resolved_url": "https://accounts.google.com/v3/signin/identifier?continue=https://aistudio.google.com/apikey&followup=https://aistudio.google.com/apikey&passive=1209600&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S1477823347:1793461600236001",
       "content_missing": false
     },
     {
@@ -335,7 +335,7 @@
     {
       "url": "https://console.mistral.ai/",
       "status": 307,
-      "resolved_url": "https://v2.auth.mistral.ai/login?flow=9b3312b6-ec2c-45f1-ba20-bdc3c4e845d4",
+      "resolved_url": "https://v2.auth.mistral.ai/login?flow=8e995eff-c5ae-44f3-bbaf-b690195b3f1d",
       "content_missing": false
     },
     {
@@ -629,7 +629,7 @@
     {
       "url": "https://ollama.com/signup",
       "status": 200,
-      "resolved_url": "https://signin.ollama.com/sign-up?client_id=client_01JX0QMHD43PFFCCNXH82A6K8B&redirect_uri=https%3A%2F%2Follama.com%2Fauth%2Fcallback&authorization_session_id=01M699FPD1QYJ5F72EKS6VFXCQ&screen_hint=sign-up",
+      "resolved_url": "https://signin.ollama.com/sign-up?client_id=client_01JX0QMHD43PFFCCNXH82A6K8B&redirect_uri=https%3A%2F%2Follama.com%2Fauth%2Fcallback&authorization_session_id=01M69A8HKSAQ5R3JJ694JWNBW6&screen_hint=sign-up",
       "content_missing": false
     },
     {
@@ -747,9 +747,21 @@
       "content_missing": false
     },
     {
+      "url": "https://novita.ai/?ref=mte5yzfe&utm_source=affiliate",
+      "status": 200,
+      "resolved_url": "https://novita.ai/?ref=mte5yzfe&utm_source=affiliate",
+      "content_missing": false
+    },
+    {
       "url": "https://novita.ai/affiliate-new",
       "status": 200,
       "resolved_url": "https://novita.ai/affiliate-new",
+      "content_missing": false
+    },
+    {
+      "url": "https://novita.ai/pricing",
+      "status": 200,
+      "resolved_url": "https://novita.ai/pricing",
       "content_missing": false
     },
     {
