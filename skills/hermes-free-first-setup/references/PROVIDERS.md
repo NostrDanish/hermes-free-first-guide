@@ -88,7 +88,7 @@ Use the project actually installed in this setup:
 
 There are similarly named forks, including an unrelated PHP implementation. Do not mix their installation or API instructions.
 
-The router is free/open source. The project's **optional paid Premium live catalog** is distinct: its README describes a delayed monthly catalog snapshot for free installs and a current feed for paying users. You do not need to buy Premium to run the router. Aggregate “billions of tokens” headlines are theoretical sums across providers—not an entitlement for every new user, a tested capacity on this machine, or a production SLA.
+The router is free/open source. The project's **optional paid Premium live catalog** is distinct: its README describes a delayed monthly catalog snapshot for free installs and a current feed for paying users — listed at $19/yr in the repository README read 31 October 2026, so treat that price as a dated claim. You do not need to buy Premium to run the router. Aggregate “billions of tokens” headlines are theoretical sums across providers—not an entitlement for every new user, a tested capacity on this machine, or a production SLA.
 
 ### Choose one installation path
 
