@@ -202,12 +202,15 @@ These are part of the stack inventory, but not all are free API providers.
 - Quests: <https://enter.pollinations.ai/quests>
 - API documentation: <https://gen.pollinations.ai/docs>
 - OpenAI-compatible base: `https://gen.pollinations.ai/v1`
+- Provider skill and plugin: <https://github.com/NostrDanish/hermes-pollinations-provider> — install it with `hermes skills install NostrDanish/hermes-pollinations-provider/skills/hermes-pollinations-provider` (Hermes' skill scanner returned SAFE for it on 31 October 2026), then run `python3 scripts/add_pollinations.py --apply` from the installed skill directory
 
 1. Create/sign into your account and inspect the wallet/available Quests.
 2. Complete legitimate offered Quests or other supported free-credit activities. Rewards and eligibility can change; no fixed free balance is promised here.
 3. Create a secret API key with restricted models, expiry, and a spending budget.
 4. Add a Hermes custom provider with the base URL above and a currently eligible model from its live catalog. The configured example on this machine was `openai/gpt-5.4-nano`; that is a priced route funded by Pollen, not automatically a zero-price model.
 5. Verify the wallet debit and remaining free/earned balance before batch use. Stop when the approved allowance ends; do not enable automatic top-ups.
+
+The bundled skill and its registrar do **not** switch `model.provider` or `model.default`: they add the provider row and leave your active model alone, so you reach for Pollinations only when you want it. The key slot is `HERMES_CUSTOM_POLLINATIONS_API_KEY` (the plugin also accepts `POLLINATIONS_API_KEY` and `POLLI_HERMES_API_KEY`); create a secret key at <https://enter.pollinations.ai/keys> and keep it out of chat.
 
 The current docs use canonical `publisher/model` names. Some old short aliases still work, but use the live catalog rather than assuming legacy `openai` aliases are permanent. Keep secret keys out of browser frontend code. For apps used by other people, use the documented **Connect User Wallets/BYOP** authorization so each user knowingly authorizes their own scoped spending. A publishable app key identifies the app; it is not an unlimited free secret key.
 
@@ -438,7 +441,7 @@ Routstr is a decentralised inference network paid per request in Bitcoin over Li
 - Docs: <https://docs.routstr.com/client/introduction/> and <https://docs.routstr.com/client/payments/>
 - Public node that answered `/v1/models` on 31 October 2026: `https://routstr.ft.hn/v1` (23 models listed)
 - Easy door: <https://chat.routstr.com/>
-- Registration helper skill: <https://github.com/NostrDanish/hermes-routstr-provider> — it writes the `providers.routstr` row; a plugin file on its own never appears in the picker.
+- Registration helper skill: <https://github.com/NostrDanish/hermes-routstr-provider> — it writes the `providers.routstr` row; a plugin file on its own never appears in the picker. It is a registration helper, not a provider-code plugin, and it has no `skills/` subdirectory: `SKILL.md` and `scripts/` sit at the repository root. Hermes' skill installer refused this repository (read 31 October 2026), so clone and run it instead: `git clone https://github.com/NostrDanish/hermes-routstr-provider.git`, then `cd hermes-routstr-provider`, then `python3 scripts/add_routstr.py --apply`. Add `--home PATH` to target a separate Hermes home; the registrar reads the current `model.provider` first, so it needs a home that already has one. The key slot is `HERMES_CUSTOM_ROUTSTR_API_KEY`; `hermes auth` is not required.
 - **Referral program: none found.** `/referral` returned 404 and no affiliate page was found. Plain links only.
 
 ### How the money works
@@ -533,7 +536,7 @@ Free-trial speed caps on that page, for `gpt-oss-120b` and `qwen-3.8-27b`: 5 req
 
 **Cerebras does run a referral program**, and it is worth knowing about: both sides receive 200,000 bonus tokens per day, capped at 1,000,000 tokens per user, with up to five referrals per person. The link is generated inside the console after you opt in, because the program's terms restrict distribution — so **the guide does not print one**, and neither should a public copy of this guide. If you want the bonus, generate your own link in the console and share it privately. Program terms: <https://www.cerebras.ai/referral-program> and the international addendum <https://www.cerebras.ai/referral-program-addendum>.
 
-Registration helper skill: <https://github.com/NostrDanish/hermes-cerebras-provider>. It lists Cerebras' public catalog and writes a `providers.cerebras` row; it ships no provider-code plugin, because Hermes reads that row from `providers:` in the config. Install it with `hermes skills install NostrDanish/hermes-cerebras-provider/skills/hermes-cerebras-provider`, and put the key in `HERMES_CUSTOM_CEREBRAS_API_KEY` (read 31 October 2026). The repository's README suggests `qwen-3.8-27b` as a row model — that is the repo's own suggestion, not a route this guide has verified against today's catalog.
+Registration helper skill: <https://github.com/NostrDanish/hermes-cerebras-provider>. It lists Cerebras' public catalog and writes a `providers.cerebras` row; it ships no provider-code plugin, because Hermes reads that row from `providers:` in the config. Install it with `hermes skills install NostrDanish/hermes-cerebras-provider/skills/hermes-cerebras-provider`, and put the key in `HERMES_CUSTOM_CEREBRAS_API_KEY` (read 31 October 2026). The repository's README suggests `qwen-3.8-27b` as a row model, and on 31 October 2026 that ID was present in Cerebras' public models endpoint, which listed exactly two models (`gpt-oss-120b` and `qwen-3.8-27b`) with no key and no spend. That is a dated catalog reading, not an entitlement: the models still need trial credit, and the catalog changes.
 
 **When the trial date is on the calendar, take the route out of Hermes the same day.** An expired trial left in a fallback burns retries, and on a card-backed account it can charge.
 
@@ -545,10 +548,10 @@ Registration helper skill: <https://github.com/NostrDanish/hermes-cerebras-provi
 |---|---|---|
 | NanoGPT | <https://github.com/NostrDanish/hermes-nanogpt-provider> | `hermes skills install NostrDanish/hermes-nanogpt-provider/skills/hermes-nanogpt-provider` |
 | Pollinations | <https://github.com/NostrDanish/hermes-pollinations-provider> | `hermes skills install NostrDanish/hermes-pollinations-provider/skills/hermes-pollinations-provider` |
-| Routstr | <https://github.com/NostrDanish/hermes-routstr-provider> | `hermes skills install NostrDanish/hermes-routstr-provider` |
-| PayPerQ | <https://github.com/NostrDanish/ppq-hermes-provider> | `hermes skills install NostrDanish/ppq-hermes-provider/skills/hermes-ppq-provider` |
+| Routstr | <https://github.com/NostrDanish/hermes-routstr-provider> | clone the repository, then `python3 scripts/add_routstr.py --apply` — the skill installer refuses this repository (read 31 October 2026) |
+| PayPerQ | <https://github.com/NostrDanish/ppq-hermes-provider> | clone the repository, then `python3 scripts/add_ppq.py --apply` — the skill installer blocks this skill (read 31 October 2026) |
 | Cerebras | <https://github.com/NostrDanish/hermes-cerebras-provider> | `hermes skills install NostrDanish/hermes-cerebras-provider/skills/hermes-cerebras-provider` |
-| OpenCode client | <https://github.com/NostrDanish/opencode-skill> | `hermes skills install NostrDanish/opencode-skill` |
+| OpenCode client | <https://github.com/NostrDanish/opencode-skill> | no install command: Hermes' skill installer refuses this skill (read 31 October 2026) — read the repository's `SKILL.md` for the client setup steps and apply them yourself |
 | FreeLLMAPI router | <https://github.com/NostrDanish/freellmapi> | fork of <https://github.com/tashfeenahmed/freellmapi> |
 | This guide | <https://github.com/NostrDanish/hermes-free-first-guide> | clone it, then copy the `skills/hermes-free-first-setup/` folder into your skills directory — `hermes skills install` from the repository path is blocked for this one skill by Hermes' own supply-chain scanner (see the repository README) |
 
@@ -619,7 +622,7 @@ Paid tier, but payable in crypto, and usable without a card.
 
 Their privacy page states that no account is required, that history stays in the browser unless you opt into sync, and that crypto is the payment they recommend. A card deposit exists from $1; that card path is not the identity-free path. Crypto starts at $0.10. Text is billed at list price with no markup — on the pricing page read 31 October 2026, DeepSeek V4.1 Flash was $0.022/$0.192 per million and GLM 5.3 Flash was $0.10/$0.30.
 
-Provider skill and plugin: <https://github.com/NostrDanish/hermes-nanogpt-provider>.
+Provider skill and plugin: <https://github.com/NostrDanish/hermes-nanogpt-provider>. Install it with `hermes skills install NostrDanish/hermes-nanogpt-provider/skills/hermes-nanogpt-provider` (Hermes' skill scanner returned SAFE for it on 31 October 2026). Its registrar writes `providers.nanogpt`, or one row per account such as `providers.nanogpt-duck`, and each account gets its own key slot — `NANOGPT_<LABEL>_API_KEY`, for example `NANOGPT_DUCK_API_KEY`; the plain `NANOGPT_API_KEY` covers the default account.
 
 ## 24. PPQ (paid-last, invite-based, privacy-first)
 
@@ -627,13 +630,21 @@ Invite-based access to strong paid models without an email or phone signup.
 
 1. Accept the invite: <https://ppq.ai/invite/949880ca>
 2. Fund the account. Check current payment methods on ppq.ai — a card goes through Stripe, and Lightning is the path that avoids a card.
-3. Create an API key, store it as `PPQ_API_KEY` in your secret manager.
+3. Create an API key, store it as `HERMES_CUSTOM_PPQ_API_KEY` in your secret manager (`PPQ_API_KEY` is also accepted), never in chat.
 4. Wire it as a custom OpenAI-compatible provider using base URL `https://api.ppq.ai/v1`; confirm model IDs from their docs.
 5. Treat as paid-last, same rule as NanoGPT.
 
 Their privacy policy says you can use the service without an account; an optional account collects an email. Chat requests are, per their documentation, decrypted only inside an AWS Nitro enclave, so PPQ staff cannot read them — but the model provider still receives your prompt unless you pick a route they label E2EE, and image, video, and audio are not in that enclave.
 
-Provider skill and plugin: <https://github.com/NostrDanish/ppq-hermes-provider>.
+Provider skill and plugin: <https://github.com/NostrDanish/ppq-hermes-provider> — a fork of `PayPerQ/ppq-hermes-provider`. The skill bundles the model-provider plugin and a registrar that writes the `providers.ppq` row and copies the plugin into your Hermes home; it does not change your default model, write a key, or send a completion. Hermes' skill installer blocks this skill (read 31 October 2026), so clone and run it instead:
+
+```
+git clone https://github.com/NostrDanish/ppq-hermes-provider.git
+cd ppq-hermes-provider/skills/hermes-ppq-provider
+python3 scripts/add_ppq.py --apply
+```
+
+That path was run end to end in a throwaway Hermes home on 31 October 2026: the `providers.ppq` row was written with `key_env: HERMES_CUSTOM_PPQ_API_KEY`, the plugin was copied into the home, and `model.provider` and `model.default` were left untouched. **PPQ charges per request — do not send a test completion.**
 
 ## 25. CheaperInference (discounted paid aggregator)
 

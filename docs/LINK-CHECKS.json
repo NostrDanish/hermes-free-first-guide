@@ -1,6 +1,6 @@
 {
   "checked_at": "2026-10-31T15:00:00+01:00",
-  "unique_links": 128,
+  "unique_links": 130,
   "results": [
     {
       "url": "https://hermes-agent.nousresearch.com/docs/user-guide/cli",
@@ -243,6 +243,12 @@
       "content_missing": true
     },
     {
+      "url": "https://github.com/NostrDanish/hermes-pollinations-provider",
+      "status": 200,
+      "resolved_url": "https://github.com/NostrDanish/hermes-pollinations-provider",
+      "content_missing": false
+    },
+    {
       "url": "https://nano-gpt.com/pricing",
       "status": 200,
       "resolved_url": "https://nano-gpt.com/pricing",
@@ -311,7 +317,7 @@
     {
       "url": "https://aistudio.google.com/apikey",
       "status": 200,
-      "resolved_url": "https://accounts.google.com/v3/signin/identifier?continue=https://aistudio.google.com/apikey&followup=https://aistudio.google.com/apikey&passive=1209600&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S1831674221:1793457758213888",
+      "resolved_url": "https://accounts.google.com/v3/signin/identifier?continue=https://aistudio.google.com/apikey&followup=https://aistudio.google.com/apikey&passive=1209600&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S1948242961:1793460785447501",
       "content_missing": false
     },
     {
@@ -329,7 +335,7 @@
     {
       "url": "https://console.mistral.ai/",
       "status": 307,
-      "resolved_url": "https://v2.auth.mistral.ai/login?flow=111be578-8251-42b6-accd-3db501cb27bf",
+      "resolved_url": "https://v2.auth.mistral.ai/login?flow=9b3312b6-ec2c-45f1-ba20-bdc3c4e845d4",
       "content_missing": false
     },
     {
@@ -597,6 +603,12 @@
       "content_missing": false
     },
     {
+      "url": "https://github.com/NostrDanish/hermes-routstr-provider.git",
+      "status": 200,
+      "resolved_url": "https://github.com/NostrDanish/hermes-routstr-provider",
+      "content_missing": false
+    },
+    {
       "url": "https://api.routstr.com/v1",
       "status": 404,
       "resolved_url": "https://api.routstr.com/v1",
@@ -617,7 +629,7 @@
     {
       "url": "https://ollama.com/signup",
       "status": 200,
-      "resolved_url": "https://signin.ollama.com/sign-up?client_id=client_01JX0QMHD43PFFCCNXH82A6K8B&redirect_uri=https%3A%2F%2Follama.com%2Fauth%2Fcallback&authorization_session_id=01M696K9E76YYBFD724GG5XBB2&screen_hint=sign-up",
+      "resolved_url": "https://signin.ollama.com/sign-up?client_id=client_01JX0QMHD43PFFCCNXH82A6K8B&redirect_uri=https%3A%2F%2Follama.com%2Fauth%2Fcallback&authorization_session_id=01M699FPD1QYJ5F72EKS6VFXCQ&screen_hint=sign-up",
       "content_missing": false
     },
     {
@@ -672,12 +684,6 @@
       "url": "https://github.com/NostrDanish/hermes-nanogpt-provider",
       "status": 200,
       "resolved_url": "https://github.com/NostrDanish/hermes-nanogpt-provider",
-      "content_missing": false
-    },
-    {
-      "url": "https://github.com/NostrDanish/hermes-pollinations-provider",
-      "status": 200,
-      "resolved_url": "https://github.com/NostrDanish/hermes-pollinations-provider",
       "content_missing": false
     },
     {
@@ -763,6 +769,12 @@
       "status": 200,
       "resolved_url": "https://api.ppq.ai/v1",
       "content_missing": true
+    },
+    {
+      "url": "https://github.com/NostrDanish/ppq-hermes-provider.git",
+      "status": 200,
+      "resolved_url": "https://github.com/NostrDanish/ppq-hermes-provider",
+      "content_missing": false
     },
     {
       "url": "https://platform.cheaperinference.com/docs",
