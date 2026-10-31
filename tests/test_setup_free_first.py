@@ -242,8 +242,8 @@ class SetupTests(unittest.TestCase):
 
     def test_nous_preset_uses_nous_catalog_models_and_endpoint(self):
         setup = self.load()
-        primary = model('poolside/laguna-s-2.1:free')
-        backup = model('poolside/laguna-xs-2.1:free')
+        primary = model('stepfun/step-3.7-flash:free', image=True)
+        backup = model('upstage/solar-mini4:free')
         vision = model('stepfun/step-3.7-flash:free', image=True)
         allowed = {item['id']: item for item in [primary, backup, vision]}
         state = {'auxiliary': {'compression': {'provider': 'auto'}, 'vision': {'provider': 'auto'}}}

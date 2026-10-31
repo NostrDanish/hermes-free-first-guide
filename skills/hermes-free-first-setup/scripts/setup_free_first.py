@@ -17,8 +17,8 @@ PROVIDERS = {
                    'preferred': 'nvidia/nemotron-3-ultra-550b-a55b:free',
                    'backup': 'openrouter/free', 'vision': 'openrouter/free'},
     'nous': {'base_url': 'https://inference-api.nousresearch.com/v1',
-             'preferred': 'poolside/laguna-s-2.1:free',
-             'backup': 'poolside/laguna-xs-2.1:free', 'vision': 'stepfun/step-3.7-flash:free'},
+             'preferred': 'stepfun/step-3.7-flash:free',
+             'backup': 'upstage/solar-mini4:free', 'vision': 'stepfun/step-3.7-flash:free'},
 }
 
 

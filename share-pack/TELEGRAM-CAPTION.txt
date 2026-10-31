@@ -9,4 +9,4 @@ Nous: https://portal.nousresearch.com/
 OpenRouter: https://openrouter.ai/models?pricing=free
 FreeLLMAPI: https://github.com/tashfeenahmed/freellmapi
 
-Forward the complete handbook PDF, or send images 01–08 in order. Send images as files for sharper text. Never forward keys or private configuration. Independent guide; source check: 20 October 2026.
+Forward the complete handbook PDF, or send images 01–08 in order. Send images as files for sharper text. Never forward keys or private configuration. Independent guide; source check: 20 October 2026, provider chapters re-verified 31 October 2026.

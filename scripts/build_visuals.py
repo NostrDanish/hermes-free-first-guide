@@ -87,7 +87,7 @@ def link(label,url,y):
     links.append((60,y,1020,end+8,url))
     return end+23
 
-def footer(note='Independent guide | checked 20 Oct 2026'):
+def footer(note='Independent guide | checked 31 Oct 2026'):
     draw.line((60,1259,1020,1259),fill=LINE,width=2)
     txt(note,60,1280,22,width=850,color=MUTED)
     txt(f'{page:02d} / 08',918,1278,24,width=110,bold=True)
@@ -120,7 +120,7 @@ save('install-hermes',y)
 # 03: Nous is a first-class free route, not an OpenRouter footnote.
 y=begin(3,'PROVIDER / NOUS','NOUS PORTAL\nHAS A FREE PLAN.','Free models only. $0 monthly credits is not a budget for paid models.')
 y=bullet('CREATE / SIGN INTO YOUR ACCOUNT','Choose the Free plan, then use Hermes model setup → Nous Portal.',y)
-y=box('CHECKED STARTER MODEL','poolside/laguna-s-2.1:free',y,fill=GREEN,body_size=32)
+y=box('CHECKED STARTER MODEL','stepfun/step-3.7-flash:free',y,fill=GREEN,body_size=32)
 y=box('API BASE URL','https://inference-api.nousresearch.com/v1',y,body_size=30)
 y=txt('Use exact free IDs from the current catalog. Hosted tools have separate entitlements. Never assume every Portal model or tool is free.',60,y,31,width=950,color=MUTED,leading=39)
 y=link('portal.nousresearch.com','https://portal.nousresearch.com/',y+22)
@@ -179,7 +179,7 @@ shutil.copyfile(source,OUT/'FULL-SETUP-GUIDE.md')
 shutil.copyfile(ROOT/'downloads/HERMES-FULL-FREE-API-HANDBOOK.pdf',OUT/'HERMES-FULL-FREE-API-HANDBOOK.pdf')
 for archive in ['hermes-free-first-setup-kit.zip', 'hermes-free-first-setup-skill.zip']:
     shutil.copyfile(ROOT/'downloads'/archive, OUT/archive)
-caption='''HERMES: THE COMPLETE FREE-API SETUP\n\nNous Portal Free + OpenRouter free models + FreeLLMAPI + optional local inference. The full handbook explains account signup, keys, endpoints, free-only routing, background jobs and verification.\n\nNot every installed provider is free: Pollinations can use earned Pollen, NanoGPT API allowances are paid-plan usage, and Cheaper Inference is paid. Trials and quotas have limits.\n\nStart: https://hermes-agent.nousresearch.com/\nNous: https://portal.nousresearch.com/\nOpenRouter: https://openrouter.ai/models?pricing=free\nFreeLLMAPI: https://github.com/tashfeenahmed/freellmapi\n\nForward the complete handbook PDF, or send images 01–08 in order. Send images as files for sharper text. Never forward keys or private configuration. Independent guide; source check: 20 October 2026.\n'''
+caption='''HERMES: THE COMPLETE FREE-API SETUP\n\nNous Portal Free + OpenRouter free models + FreeLLMAPI + optional local inference. The full handbook explains account signup, keys, endpoints, free-only routing, background jobs and verification.\n\nNot every installed provider is free: Pollinations can use earned Pollen, NanoGPT API allowances are paid-plan usage, and Cheaper Inference is paid. Trials and quotas have limits.\n\nStart: https://hermes-agent.nousresearch.com/\nNous: https://portal.nousresearch.com/\nOpenRouter: https://openrouter.ai/models?pricing=free\nFreeLLMAPI: https://github.com/tashfeenahmed/freellmapi\n\nForward the complete handbook PDF, or send images 01–08 in order. Send images as files for sharper text. Never forward keys or private configuration. Independent guide; source check: 20 October 2026, provider chapters re-verified 31 October 2026.\n'''
 (OUT/'TELEGRAM-CAPTION.txt').write_text(caption)
 (OUT/'README.txt').write_text('''FREE-FIRST SHARE PACK\n\n01–08 PNG: portrait 1080 x 1350 image guide. Send in numeric order as one album.\nFREE-FIRST-VISUAL-GUIDE.pdf: the same 8 cards, with clickable resource links.\nHERMES-FULL-FREE-API-HANDBOOK.pdf: complete Hermes/provider setup with selectable text and links.\nFULL-SETUP-GUIDE.md: complete setup instructions and copyable commands.\nhermes-free-first-setup-kit.zip: setup helper, portable AI skill, instructions and tests.\nhermes-free-first-setup-skill.zip: standalone portable skill folder.\nTELEGRAM-CAPTION.txt: ready-to-paste sharing caption.\n\nThis is an illustrated guide, not screenshots of the application. Model/catalog facts come from the checked companion guide. Availability and quotas may change.\n''')
 

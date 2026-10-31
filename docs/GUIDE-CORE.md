@@ -75,10 +75,12 @@ Download from <https://hermes-agent.nousresearch.com/> and follow the instructio
 ### Linux, supported macOS, or Windows through WSL2
 
 ```bash
-curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+curl -fsSL -o install.sh https://hermes-agent.nousresearch.com/install.sh
+less install.sh
+bash install.sh
 ```
 
-This executes downloaded code. Review the installer first if that does not match your security policy. Do not run the installer as root merely for convenience. Follow the installer's shell/PATH instructions or reopen your terminal.
+This downloads the official installer so you can read it before it runs, instead of piping a remote script straight into a shell. Delete `install.sh` afterwards if you prefer. Do not run the installer as root merely for convenience. Follow the installer's shell/PATH instructions or reopen your terminal.
 
 Then:
 
@@ -146,6 +148,8 @@ Open a **new chat** afterward. An existing chat may retain its earlier model unt
 
 This is a starting choice, not a permanent “best model” claim or a successful inference benchmark. If it disappears, use the discovery steps below.
 
+**No affiliate program was found for OpenRouter.** The first-party pages reviewed on 31 October 2026 — `openrouter.ai/docs/use-cases/affiliate-program` and `openrouter.ai/affiliate` — both returned HTTP 404, so this guide links OpenRouter plainly and publishes no referral URL for it.
+
 ### Prefer not to choose a specific model?
 
 Use **OpenRouter's Free Models Router**:
@@ -156,7 +160,7 @@ openrouter/free
 
 Docs: <https://openrouter.ai/docs/guides/routing/routers/free-router>
 
-It filters for request capabilities, then randomly selects from eligible free models. It is not a guaranteed best-model selector. It can be convenient for starting out; a fixed model is easier to evaluate and troubleshoot.
+It filters for request capabilities, then randomly selects from eligible free models. It is not a guaranteed best-model selector. Selection is random, so two identical requests can land on different free models, and a model you never chose can be pulled in for a prompt type it handles poorly. It can be convenient for starting out; a fixed model is easier to evaluate and troubleshoot.
 
 **Do not confuse `openrouter/free` with `openrouter/auto`. The auto router is not a free-only guarantee.**
 
@@ -191,12 +195,15 @@ PY
 
 Checking every listed price avoids assuming that zero text-token prices imply zero price for every other listed component. Catalog metadata still does not establish availability, reliable tool use, or zero cost for separately enabled plugins/tools.
 
-Other entries observed in the checked catalog included:
+Other explicitly zero-priced, tool-advertising **model** IDs observed in the catalog on 31 October 2026 included:
 
-- `poolside/laguna-s-2.1:free`
-- `nvidia/nemotron-3-super-120b-a12b:free`
+- `nvidia/nemotron-3-ultra-550b-a55b:free`
+- `nvidia/nemotron-3.5-lightning:free`
 - `google/gemma-4-31b-it:free`
-- `minimax/minimax-m3.1-flash:free`
+- `thinkingmachines/inkling:free`
+- `cohere/north-mini-code:free`
+
+`openrouter/free` is listed separately above because it is the **Free Models Router**, not a concrete inference model: it selects among eligible free models at request time.
 
 Do not append `:free` to an arbitrary paid model and assume it works. The exact free variant must exist in the catalog.
 
@@ -221,7 +228,7 @@ These aliases and the sample fallback list are the OpenRouter variant. Keep Nous
 
 ```bash
 hermes config set model.aliases.free 'openrouter/nvidia/nemotron-3-ultra-550b-a55b:free'
-hermes config set model.aliases.freebackup 'openrouter/poolside/laguna-s-2.1:free'
+hermes config set model.aliases.freebackup 'openrouter/nvidia/nemotron-3.5-lightning:free'
 hermes config set model.aliases.freerouter 'openrouter/openrouter/free'
 ```
 
@@ -252,7 +259,7 @@ hermes fallback list
 Or set this explicit starter chain with the CLI:
 
 ```bash
-hermes config set fallback_providers '[{"provider":"openrouter","model":"poolside/laguna-s-2.1:free"},{"provider":"openrouter","model":"openrouter/free"}]'
+hermes config set fallback_providers '[{"provider":"openrouter","model":"nvidia/nemotron-3.5-lightning:free"},{"provider":"openrouter","model":"openrouter/free"}]'
 ```
 
 **That command replaces your existing chain.** Back it up first and retain any needed local/free entries deliberately. Check any legacy entry as well:
@@ -620,7 +627,7 @@ The expanded edition also inspected the redacted installed-provider families and
 - CLI help was checked on Hermes `v0.22.2+2232.g86fa9e6`.
 - Fifteen core configuration commands were executed successfully against a disposable `HERMES_HOME`, including aliases, the JSON fallback list, delegation settings, cron defaults, and compression overrides.
 - The resulting config was parsed and key types/values were asserted.
-- The exact catalog-discovery example was executed, Bash snippets passed syntax checks, the YAML example parsed, and all 31 unique shared links returned HTTP 200 during the check.
+- The exact catalog-discovery example was executed, Bash snippets passed syntax checks, and the YAML example parsed. The dated release snapshot in `docs/VERIFICATION.md` records the measured link check; `docs/LINK-CHECKS.json` preserves the per-URL results rather than claiming all requests returned 200.
 
 **Not performed:** fresh OS installation, authenticated completion benchmarks for every suggested model, a new local-model download, a new Jev installation, or a live paid-escalation failure test. Your active configuration was not modified to produce this guide.
 

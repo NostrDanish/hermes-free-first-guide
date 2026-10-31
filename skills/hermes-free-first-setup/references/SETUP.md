@@ -28,7 +28,7 @@ Choose a specific model only by its exact current catalog ID:
 python3 scripts/setup_free_first.py --home "$HOME/.hermes" --provider openrouter --model openrouter/free
 ```
 
-The script checks the selected provider’s public catalog for explicit finite-zero pricing and tool support, chooses only verified same-provider free backups, and pins vision to an image-capable free route. OpenRouter’s preset requires its free router; Nous uses its own free model IDs and endpoint. It prefers the current preset’s known starter (Laguna on Nous, Nemotron on OpenRouter) and rejects an unverified fallback. A requested unavailable or priced model is rejected rather than normalized or silently substituted.
+The script checks the selected provider’s public catalog for explicit finite-zero pricing and tool support, chooses only verified same-provider free backups, and pins vision to an image-capable free route. OpenRouter’s preset requires its free router; Nous uses its own free model IDs and endpoint. It prefers the current preset’s known starter (Step 3.7 Flash on Nous, Nemotron Ultra on OpenRouter) and rejects an unverified fallback. A requested unavailable or priced model is rejected rather than normalized or silently substituted.
 
 ## What changes
 

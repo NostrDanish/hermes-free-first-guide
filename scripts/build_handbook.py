@@ -21,13 +21,14 @@ def compose():
     numbering = {1: 1, 2: 2, 3: 4, 4: 9, 5: 10, 6: 11, 7: 12, 8: 13, 9: 14, 10: 15, 11: 16, 12: 17}
     for old, new in numbering.items():
         combined[new] = re.sub(r'^## \d+\.', f'## {new}.', core[old], count=1)
-    assert sorted(combined) == list(range(22))
+    assert not (set(providers) & set(numbering.values())), 'provider/core chapter number collision'
+    assert sorted(combined) == list(range(len(combined))), sorted(combined)
     titles = [combined[n].splitlines()[0][3:] for n in sorted(combined)]
     front = '''# Hermes: The Complete Free-API Handbook
 
 **Set up Hermes, connect Nous Portal Free and OpenRouter, combine legitimate allowances through FreeLLMAPI, add optional local models, and keep paid use explicit.**
 
-Independent practical setup handbook. Sources/catalogs checked **20 October 2026**. This covers the provider families actually configured in the author's stack plus additional eligible upstreams—not just OpenRouter. Catalogs, pricing, account eligibility, and tool APIs can change. No secret/account database is included and no unlimited-free guarantee is made.
+Independent practical setup handbook. Sources/catalogs checked **20 October 2026**; provider chapters re-verified against first-party pages **31 October 2026**. This covers the provider families actually configured in the author's stack plus additional eligible upstreams—not just OpenRouter. Catalogs, pricing, account eligibility, and tool APIs can change. No secret/account database is included and no unlimited-free guarantee is made.
 
 **Access labels matter:** zero-priced route ≠ recurring allowance ≠ trial credits ≠ earned credits ≠ subscription-included usage ≠ discounted paid inference. Each provider chapter identifies the difference.
 
@@ -158,7 +159,7 @@ def render_pdf(text, destination):
     def footer(canvas, doc):
         canvas.setFont('Handbook',8)
         canvas.setFillColor(colors.HexColor('#607369'))
-        canvas.drawString(48,25,'HERMES / FREE API HANDBOOK · Source check: 20 Oct 2026')
+        canvas.drawString(48,25,'HERMES / FREE API HANDBOOK · Source check: 20 Oct 2026 · provider chapters re-verified 31 Oct 2026')
         canvas.drawRightString(A4[0]-48,25,str(doc.page))
     document.build(story, onFirstPage=footer, onLaterPages=footer)
 

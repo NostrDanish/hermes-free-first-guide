@@ -41,6 +41,8 @@ Choose `--provider nous` or `--provider openrouter` explicitly. FreeLLMAPI/custo
 
 To install the skill, inspect and copy its entire folder into the intended client's skill directory without overwriting an existing skill. It can also be read directly from this repository. See the setup instructions for a guarded copy example and Windows caveats.
 
+`hermes skills install` from the repository path is blocked for this skill by Hermes' own supply-chain scanner: the bundled setup script passes the environment to the `hermes` CLI and shells out to it, which the scanner treats as a risky pattern in an unverified community skill. That is a scanner verdict on a helper that only edits your own config, not evidence of a malicious file. Clone the repository and copy the `skills/hermes-free-first-setup/` folder instead of forcing the install.
+
 Offline tests: `python3 -m unittest discover -s tests -v`.
 Optional real-CLI integration (disposable homes + public catalog, no model inference): `python3 tests/integration_setup.py`.
 

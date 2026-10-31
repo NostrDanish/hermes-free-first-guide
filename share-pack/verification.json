@@ -9,47 +9,47 @@
   "files": [
     {
       "name": "01-the-strategy.png",
-      "bytes": 84724
+      "bytes": 85184
     },
     {
       "name": "02-install-hermes.png",
-      "bytes": 95805
+      "bytes": 96273
     },
     {
       "name": "03-nous-portal-free.png",
-      "bytes": 101661
+      "bytes": 101288
     },
     {
       "name": "04-openrouter-free.png",
-      "bytes": 103497
+      "bytes": 103964
     },
     {
       "name": "05-freellmapi-gateway.png",
-      "bytes": 116479
+      "bytes": 116936
     },
     {
       "name": "06-other-provider-allowances.png",
-      "bytes": 109019
+      "bytes": 109485
     },
     {
       "name": "07-local-and-cost-controls.png",
-      "bytes": 117798
+      "bytes": 118274
     },
     {
       "name": "08-verify-and-share.png",
-      "bytes": 114145
+      "bytes": 114606
     },
     {
       "name": "FREE-FIRST-VISUAL-GUIDE.pdf",
-      "bytes": 857672
+      "bytes": 859654
     },
     {
       "name": "FULL-SETUP-GUIDE.md",
-      "bytes": 72994
+      "bytes": 103884
     },
     {
       "name": "HERMES-FULL-FREE-API-HANDBOOK.pdf",
-      "bytes": 159656
+      "bytes": 220763
     },
     {
       "name": "README.txt",
@@ -57,15 +57,15 @@
     },
     {
       "name": "TELEGRAM-CAPTION.txt",
-      "bytes": 813
+      "bytes": 860
     },
     {
       "name": "hermes-free-first-setup-kit.zip",
-      "bytes": 178868
+      "bytes": 228706
     },
     {
       "name": "hermes-free-first-setup-skill.zip",
-      "bytes": 26601
+      "bytes": 36025
     }
   ]
 }
