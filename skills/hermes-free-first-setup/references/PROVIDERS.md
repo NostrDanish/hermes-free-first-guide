@@ -438,7 +438,7 @@ Routstr is a decentralised inference network paid per request in Bitcoin over Li
 - Docs: <https://docs.routstr.com/client/introduction/> and <https://docs.routstr.com/client/payments/>
 - Public node that answered `/v1/models` on 31 October 2026: `https://routstr.ft.hn/v1` (23 models listed)
 - Easy door: <https://chat.routstr.com/>
-- Provider skill and plugin: <https://github.com/NostrDanish/hermes-routstr-provider>
+- Registration helper skill: <https://github.com/NostrDanish/hermes-routstr-provider> — it writes the `providers.routstr` row; a plugin file on its own never appears in the picker.
 - **Referral program: none found.** `/referral` returned 404 and no affiliate page was found. Plain links only.
 
 ### How the money works
@@ -533,7 +533,7 @@ Free-trial speed caps on that page, for `gpt-oss-120b` and `qwen-3.8-27b`: 5 req
 
 **Cerebras does run a referral program**, and it is worth knowing about: both sides receive 200,000 bonus tokens per day, capped at 1,000,000 tokens per user, with up to five referrals per person. The link is generated inside the console after you opt in, because the program's terms restrict distribution — so **the guide does not print one**, and neither should a public copy of this guide. If you want the bonus, generate your own link in the console and share it privately. Program terms: <https://www.cerebras.ai/referral-program> and the international addendum <https://www.cerebras.ai/referral-program-addendum>.
 
-Provider skill and plugin for Cerebras: <https://github.com/NostrDanish/hermes-cerebras-provider>.
+Registration helper skill: <https://github.com/NostrDanish/hermes-cerebras-provider>. It lists Cerebras' public catalog and writes a `providers.cerebras` row; it ships no provider-code plugin, because Hermes reads that row from `providers:` in the config. Install it with `hermes skills install NostrDanish/hermes-cerebras-provider/skills/hermes-cerebras-provider`, and put the key in `HERMES_CUSTOM_CEREBRAS_API_KEY` (read 31 October 2026). The repository's README suggests `qwen-3.8-27b` as a row model — that is the repo's own suggestion, not a route this guide has verified against today's catalog.
 
 **When the trial date is on the calendar, take the route out of Hermes the same day.** An expired trial left in a fallback burns retries, and on a card-backed account it can charge.
 
@@ -551,6 +551,8 @@ Provider skill and plugin for Cerebras: <https://github.com/NostrDanish/hermes-c
 | OpenCode client | <https://github.com/NostrDanish/opencode-skill> | `hermes skills install NostrDanish/opencode-skill` |
 | FreeLLMAPI router | <https://github.com/NostrDanish/freellmapi> | fork of <https://github.com/tashfeenahmed/freellmapi> |
 | This guide | <https://github.com/NostrDanish/hermes-free-first-guide> | clone it, then copy the `skills/hermes-free-first-setup/` folder into your skills directory — `hermes skills install` from the repository path is blocked for this one skill by Hermes' own supply-chain scanner (see the repository README) |
+
+**The roles differ.** NanoGPT, PayPerQ, and Pollinations bundle a model-provider plugin together with a registration skill; PayPerQ is an owner-maintained fork of `PayPerQ/ppq-hermes-provider`. Cerebras and Routstr are registration helpers that only write the `providers.<slug>` row — a plugin file alone never appears in the picker. FreeLLMAPI is a gateway application and its documentation, not a Hermes provider plugin. This guide is the handbook plus its packaged setup skill.
 
 The Hermes agent's own per-provider references live in the `hermes-agent` skill: `references/nanogpt-api.md`, `references/ppq.md`, `references/routstr.md`, `references/pollinations.md`, `references/omniroute.md`, `references/providers-and-models.md`. Nous, OpenRouter, OpenCode, TypeSafe, and the local runtimes ship with Hermes itself and need no extra repository.
 
