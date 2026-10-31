@@ -1,6 +1,6 @@
 {
   "checked_at": "2026-10-31T15:00:00+01:00",
-  "unique_links": 127,
+  "unique_links": 128,
   "results": [
     {
       "url": "https://hermes-agent.nousresearch.com/docs/user-guide/cli",
@@ -207,6 +207,12 @@
       "content_missing": false
     },
     {
+      "url": "https://github.com/NostrDanish/freellm-watch",
+      "status": 200,
+      "resolved_url": "https://github.com/NostrDanish/freellm-watch",
+      "content_missing": false
+    },
+    {
       "url": "https://pollinations.ai/",
       "status": 200,
       "resolved_url": "https://pollinations.ai/",
@@ -305,7 +311,7 @@
     {
       "url": "https://aistudio.google.com/apikey",
       "status": 200,
-      "resolved_url": "https://accounts.google.com/v3/signin/identifier?continue=https://aistudio.google.com/apikey&followup=https://aistudio.google.com/apikey&passive=1209600&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S1831674221:1793455114725363",
+      "resolved_url": "https://accounts.google.com/v3/signin/identifier?continue=https://aistudio.google.com/apikey&followup=https://aistudio.google.com/apikey&passive=1209600&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S1948242961:1793456827512096",
       "content_missing": false
     },
     {
@@ -323,7 +329,7 @@
     {
       "url": "https://console.mistral.ai/",
       "status": 307,
-      "resolved_url": "https://v2.auth.mistral.ai/login?flow=57607eec-e980-4bd4-a138-c0d3aa06888c",
+      "resolved_url": "https://v2.auth.mistral.ai/login?flow=8dcb0c55-6522-4094-9b72-dff25683cd46",
       "content_missing": false
     },
     {
@@ -611,7 +617,7 @@
     {
       "url": "https://ollama.com/signup",
       "status": 200,
-      "resolved_url": "https://signin.ollama.com/sign-up?client_id=client_01JX0QMHD43PFFCCNXH82A6K8B&redirect_uri=https%3A%2F%2Follama.com%2Fauth%2Fcallback&authorization_session_id=01M6942M2AMJAM1PX8371TJCRV&screen_hint=sign-up",
+      "resolved_url": "https://signin.ollama.com/sign-up?client_id=client_01JX0QMHD43PFFCCNXH82A6K8B&redirect_uri=https%3A%2F%2Follama.com%2Fauth%2Fcallback&authorization_session_id=01M695PWGVDA96DTBC6EG7ZB6Z&screen_hint=sign-up",
       "content_missing": false
     },
     {

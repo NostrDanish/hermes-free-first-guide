@@ -497,6 +497,8 @@ The model ID `auto` is FreeLLMAPI's router and is only as safe as its enabled up
 
 The free snapshot catalog can be stale. Reconcile it with current first-party terms—especially services whose free offerings changed, such as Hugging Face hosted inference. Do not buy a catalog subscription automatically to “fix” model availability.
 
+The guide's companion tracker <https://github.com/NostrDanish/freellm-watch> follows that churn on a cron schedule and keeps a free-model list and a fallback chain current. Treat its numbers as a dated snapshot, not a live catalog.
+
 ### Connect Hermes to FreeLLMAPI
 
 In `hermes model`, choose a **Custom Endpoint** or add a named custom provider through provider settings:
@@ -1379,9 +1381,17 @@ Provider skill and plugin for Cerebras: <https://github.com/NostrDanish/hermes-c
 | Cerebras | <https://github.com/NostrDanish/hermes-cerebras-provider> | `hermes skills install NostrDanish/hermes-cerebras-provider/skills/hermes-cerebras-provider` |
 | OpenCode client | <https://github.com/NostrDanish/opencode-skill> | `hermes skills install NostrDanish/opencode-skill` |
 | FreeLLMAPI router | <https://github.com/NostrDanish/freellmapi> | fork of <https://github.com/tashfeenahmed/freellmapi> |
-| This guide | <https://github.com/NostrDanish/hermes-free-first-guide> | clone it, then copy the `skills/hermes-free-first-setup/` folder into your skills directory (see the note below) |
+| This guide | <https://github.com/NostrDanish/hermes-free-first-guide> | clone it, then copy the `skills/hermes-free-first-setup/` folder into your skills directory — `hermes skills install` from the repository path is blocked for this one skill by Hermes' own supply-chain scanner (see the repository README) |
 
 The Hermes agent's own per-provider references live in the `hermes-agent` skill: `references/nanogpt-api.md`, `references/ppq.md`, `references/routstr.md`, `references/pollinations.md`, `references/omniroute.md`, `references/providers-and-models.md`. Nous, OpenRouter, OpenCode, TypeSafe, and the local runtimes ship with Hermes itself and need no extra repository.
+
+### A companion project that is not a provider
+
+| Project | Repository | What it is |
+|---|---|---|
+| FreeLLMAPI tracker | <https://github.com/NostrDanish/freellm-watch> | self-maintaining free-LLM tracker: `GUIDE.md`, `models.csv`, a fallback `chain.json`, and a `skills/freellmapi` gateway-ops skill |
+
+Its files are refreshed on a cron schedule, so read them as a **dated snapshot**, not a live catalog, and confirm any limit against the provider's own page. Its `monitor.sh` pulls watched repositories and restarts the local gateway — read that script before running it.
 
 ### Two registration facts that cause most of the confusion
 
